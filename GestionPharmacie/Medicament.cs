@@ -1,331 +1,196 @@
-﻿using DotNetEnv;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
+using System.Data;
 
 namespace GestionPharmacie
 {
-
-    internal class Medicament
+    public class Medicament
     {
-        private static readonly string server;
-        private static readonly string database;
+        public int Id { get; set; }
+        public string Nom { get; set; }
+        public string Reference { get; set; }
+        public string Description { get; set; }
+        public string Dosage { get; set; }
+        public string Categorie { get; set; }
+        public decimal PrixAchat { get; set; }
+        public decimal PrixVente { get; set; }
+        public DateTime DateCreation { get; set; }
+        public DateTime DateModification { get; set; }
 
-        static Medicament()
+        private SqlConnection _connection;
+
+        public Medicament()
         {
-            Env.Load(); // Loads .env file once
-
-            server = Env.GetString("DB_SERVER");
-            database = Env.GetString("DB_NAME");
+            _connection = Connexion.connecter(); // Use your Connexion class
         }
 
-        private string nom;
-        private string reference;
-        private string description;
-        private string dosage;
-        private string forme;
-        private float prix_unitaire;
-        private int quantite_stock;
-        private int seuil_alerte;
-        private DateTime date_peremption;
-        private int fournisseur_id;
-
-
-        private Medicament() { }
-        public Medicament(string nom, string reference, string description, string dosage, string forme, float prix_unitaire, int quantite_stock, int seuil_alerte, DateTime date_peremption, int fournisseur_id)
+        // Add new Medicament
+        public bool Ajouter()
         {
-            this.nom = nom;
-            this.reference = reference;
-            this.description = description;
-            this.dosage = dosage;
-            this.forme = forme;
-            this.prix_unitaire = prix_unitaire;
-            this.quantite_stock = quantite_stock;
-            this.seuil_alerte = seuil_alerte;
-            this.date_peremption = date_peremption;
-            this.fournisseur_id = fournisseur_id;
-        }
-        public string Nom { get => nom; set => nom = value; }
-        public string Reference { get => reference; set => reference = value; }
-        public string Description { get => description; set => description = value; }
-        public string Dosage { get => dosage; set => dosage = value; }
-        public string Forme { get => forme; set => forme = value; }
-        public float Prix_unitaire { get => prix_unitaire; set => prix_unitaire = value; }
-        public int Quantite_stock { get => quantite_stock; set => quantite_stock = value; }
-        public int Seuil_alerte { get => seuil_alerte; set => seuil_alerte = value; }
-        public DateTime Date_peremption { get => date_peremption; set => date_peremption = value; }
-        public int Fournisseur_id { get => fournisseur_id; set => fournisseur_id = value; }
-
-
-        //RECHERCHE MEDICAMENT
-        public Medicament GetMedicamentById(int id)
-        {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = $"Server={server};Database={database};Integrated Security=SSPI;TrustServerCertificate=True;";
-            connection.Open();
-            Console.WriteLine("Connection successful!");
-            string query = "SELECT * FROM medicament WHERE id=" + id;
-            SqlCommand command = new SqlCommand(query, connection);
-            SqlDataReader reader = command.ExecuteReader();
-            Medicament medicament = null;
-            if (reader.Read())
+            try
             {
-                medicament = new Medicament
+                string sql = @"INSERT INTO medicament
+                               (nom, reference, description, dosage, categorie, prix_achat, prix_vente)
+                               VALUES (@Nom, @Reference, @Description, @Dosage, @Categorie, @PrixAchat, @PrixVente);";
+
+                using (SqlCommand cmd = new SqlCommand(sql, _connection))
                 {
-                    nom = reader["nom"].ToString(),
-                    reference = reader["reference"].ToString(),
-                    description = reader["description"].ToString(),
-                    dosage = reader["dosage"].ToString(),
-                    forme = reader["forme"].ToString(),
-                    prix_unitaire = float.Parse(reader["prix_unitaire"].ToString()),
-                    quantite_stock = int.Parse(reader["quantite_stock"].ToString()),
-                    seuil_alerte = int.Parse(reader["seuil_alerte"].ToString()),
-                    date_peremption = DateTime.Parse(reader["date_peremption"].ToString()),
-                    fournisseur_id = int.Parse(reader["fournisseur_id"].ToString())
-                };
+                    cmd.Parameters.AddWithValue("@Nom", Nom);
+                    cmd.Parameters.AddWithValue("@Reference", Reference);
+                    cmd.Parameters.AddWithValue("@Description", Description ?? "");
+                    cmd.Parameters.AddWithValue("@Dosage", Dosage ?? "");
+                    cmd.Parameters.AddWithValue("@Categorie", Categorie ?? "");
+                    cmd.Parameters.AddWithValue("@PrixAchat", PrixAchat);
+                    cmd.Parameters.AddWithValue("@PrixVente", PrixVente);
+
+                    _connection.Open();
+                    int result = cmd.ExecuteNonQuery();
+                    return result > 0;
+                }
             }
-            reader.Close();
-            connection.Close();
-            return medicament;
-        }
-        public Medicament GetMedicamentByReference(string reference)
-        {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = $"Server={server};Database={database};Integrated Security=SSPI;TrustServerCertificate=True;";
-            connection.Open();
-            Console.WriteLine("Connection successful!");
-            string query = "SELECT * FROM medicament WHERE reference='" + reference + "'";
-            SqlCommand command = new SqlCommand(query, connection);
-            SqlDataReader reader = command.ExecuteReader();
-            Medicament medicament = null;
-            if (reader.Read())
+            catch (Exception ex)
             {
-                medicament = new Medicament
+                Console.WriteLine("Erreur Ajouter: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (_connection.State == ConnectionState.Open)
+                    _connection.Close();
+            }
+        }
+
+        // Update existing Medicament
+        public bool Modifier()
+        {
+            try
+            {
+                string sql = @"UPDATE medicament
+                               SET nom=@Nom, reference=@Reference, description=@Description, dosage=@Dosage,
+                                   categorie=@Categorie, prix_achat=@PrixAchat, prix_vente=@PrixVente,
+                                   date_modification=GETDATE()
+                               WHERE id=@Id";
+
+                using (SqlCommand cmd = new SqlCommand(sql, _connection))
                 {
-                    nom = reader["nom"].ToString(),
-                    reference = reader["reference"].ToString(),
-                    description = reader["description"].ToString(),
-                    dosage = reader["dosage"].ToString(),
-                    forme = reader["forme"].ToString(),
-                    prix_unitaire = float.Parse(reader["prix_unitaire"].ToString()),
-                    quantite_stock = int.Parse(reader["quantite_stock"].ToString()),
-                    seuil_alerte = int.Parse(reader["seuil_alerte"].ToString()),
-                    date_peremption = DateTime.Parse(reader["date_peremption"].ToString()),
-                    fournisseur_id = int.Parse(reader["fournisseur_id"].ToString())
-                };
+                    cmd.Parameters.AddWithValue("@Id", Id);
+                    cmd.Parameters.AddWithValue("@Nom", Nom);
+                    cmd.Parameters.AddWithValue("@Reference", Reference);
+                    cmd.Parameters.AddWithValue("@Description", Description ?? "");
+                    cmd.Parameters.AddWithValue("@Dosage", Dosage ?? "");
+                    cmd.Parameters.AddWithValue("@Categorie", Categorie ?? "");
+                    cmd.Parameters.AddWithValue("@PrixAchat", PrixAchat);
+                    cmd.Parameters.AddWithValue("@PrixVente", PrixVente);
+
+                    _connection.Open();
+                    int result = cmd.ExecuteNonQuery();
+                    return result > 0;
+                }
             }
-            reader.Close();
-            connection.Close();
-            return medicament;
-        }
-        public Medicament GetMedicamentByNom(string nom)
-        {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = $"Server={server};Database={database};Integrated Security=SSPI;TrustServerCertificate=True;";
-            connection.Open();
-            Console.WriteLine("Connection successful!");
-            string query = "SELECT * FROM medicament WHERE nom='" + nom + "'";
-            SqlCommand command = new SqlCommand(query, connection);
-            SqlDataReader reader = command.ExecuteReader();
-            Medicament medicament = null;
-            if (reader.Read())
+            catch (Exception ex)
             {
-                medicament = new Medicament
+                Console.WriteLine("Erreur Modifier: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (_connection.State == ConnectionState.Open)
+                    _connection.Close();
+            }
+        }
+
+        // Delete Medicament by ID
+        public bool Supprimer()
+        {
+            try
+            {
+                string sql = "DELETE FROM medicament WHERE id=@Id";
+                using (SqlCommand cmd = new SqlCommand(sql, _connection))
                 {
-                    nom = reader["nom"].ToString(),
-                    reference = reader["reference"].ToString(),
-                    description = reader["description"].ToString(),
-                    dosage = reader["dosage"].ToString(),
-                    forme = reader["forme"].ToString(),
-                    prix_unitaire = float.Parse(reader["prix_unitaire"].ToString()),
-                    quantite_stock = int.Parse(reader["quantite_stock"].ToString()),
-                    seuil_alerte = int.Parse(reader["seuil_alerte"].ToString()),
-                    date_peremption = DateTime.Parse(reader["date_peremption"].ToString()),
-                    fournisseur_id = int.Parse(reader["fournisseur_id"].ToString())
-                };
+                    cmd.Parameters.AddWithValue("@Id", Id);
+                    _connection.Open();
+                    int result = cmd.ExecuteNonQuery();
+                    return result > 0;
+                }
             }
-            reader.Close();
-            connection.Close();
-            return medicament;
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur Supprimer: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (_connection.State == ConnectionState.Open)
+                    _connection.Close();
+            }
         }
 
-        public Medicament GetMedicamentByDatePeremption(DateTime date_peremption)
+        // Get Medicament by ID
+        public bool ChargerParId(int id)
         {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = $"Server={server};Database={database};Integrated Security=SSPI;TrustServerCertificate=True;";
-            Console.WriteLine("Connection successful!");
-            string query = "SELECT * FROM medicament WHERE date_peremption='" + date_peremption.ToString("yyyy-MM-dd") + "'";
-            SqlCommand command = new SqlCommand(query, connection);
-            SqlDataReader reader = command.ExecuteReader();
-            Medicament medicament = null;
-            if (reader.Read())
+            try
             {
-                medicament = new Medicament
+                string sql = "SELECT * FROM medicament WHERE id=@Id";
+                using (SqlCommand cmd = new SqlCommand(sql, _connection))
                 {
-                    nom = reader["nom"].ToString(),
-                    reference = reader["reference"].ToString(),
-                    description = reader["description"].ToString(),
-                    dosage = reader["dosage"].ToString(),
-                    forme = reader["forme"].ToString(),
-                    prix_unitaire = float.Parse(reader["prix_unitaire"].ToString()),
-                    quantite_stock = int.Parse(reader["quantite_stock"].ToString()),
-                    seuil_alerte = int.Parse(reader["seuil_alerte"].ToString()),
-                    date_peremption = DateTime.Parse(reader["date_peremption"].ToString()),
-                    fournisseur_id = int.Parse(reader["fournisseur_id"].ToString())
-                };
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    _connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Id = Convert.ToInt32(reader["id"]);
+                            Nom = reader["nom"].ToString();
+                            Reference = reader["reference"].ToString();
+                            Description = reader["description"].ToString();
+                            Dosage = reader["dosage"].ToString();
+                            Categorie = reader["categorie"].ToString();
+                            PrixAchat = Convert.ToDecimal(reader["prix_achat"]);
+                            PrixVente = Convert.ToDecimal(reader["prix_vente"]);
+                            DateCreation = Convert.ToDateTime(reader["date_creation"]);
+                            DateModification = Convert.ToDateTime(reader["date_modification"]);
+                            return true;
+                        }
+                    }
+                }
+                return false;
             }
-            reader.Close();
-            connection.Close();
-            return medicament;
-        }
-        public Medicament getMedicamentByFournisseurId(int fournisseur_id)
-        {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = $"Server={server};Database={database};Integrated Security=SSPI;TrustServerCertificate=True;";
-            connection.Open();
-            Console.WriteLine("Connection successful!");
-            string query = "SELECT * FROM medicament WHERE fournisseur_id=" + fournisseur_id;
-            SqlCommand command = new SqlCommand(query, connection);
-            SqlDataReader reader = command.ExecuteReader();
-            Medicament medicament = null;
-            if (reader.Read())
+            catch (Exception ex)
             {
-                medicament = new Medicament
-                {
-                    nom = reader["nom"].ToString(),
-                    reference = reader["reference"].ToString(),
-                    description = reader["description"].ToString(),
-                    dosage = reader["dosage"].ToString(),
-                    forme = reader["forme"].ToString(),
-                    prix_unitaire = float.Parse(reader["prix_unitaire"].ToString()),
-                    quantite_stock = int.Parse(reader["quantite_stock"].ToString()),
-                    seuil_alerte = int.Parse(reader["seuil_alerte"].ToString()),
-                    date_peremption = DateTime.Parse(reader["date_peremption"].ToString()),
-                    fournisseur_id = int.Parse(reader["fournisseur_id"].ToString())
-                };
+                Console.WriteLine("Erreur ChargerParId: " + ex.Message);
+                return false;
             }
-            reader.Close();
-            connection.Close();
-            return medicament;
-        }
-
-        public List<Medicament> GetAllMedicaments()
-        {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = $"Server={server};Database={database};Integrated Security=SSPI;TrustServerCertificate=True;";
-            connection.Open();
-            Console.WriteLine("Connection successful!");
-            string query = "SELECT * FROM medicament";
-            SqlCommand command = new SqlCommand(query, connection);
-            SqlDataReader reader = command.ExecuteReader();
-            List<Medicament> medicaments = new List<Medicament>();
-            while (reader.Read())
+            finally
             {
-                Medicament medicament = new Medicament
-                {
-                    nom = reader["nom"].ToString(),
-                    reference = reader["reference"].ToString(),
-                    description = reader["description"].ToString(),
-                    dosage = reader["dosage"].ToString(),
-                    forme = reader["forme"].ToString(),
-                    prix_unitaire = float.Parse(reader["prix_unitaire"].ToString()),
-                    quantite_stock = int.Parse(reader["quantite_stock"].ToString()),
-                    seuil_alerte = int.Parse(reader["seuil_alerte"].ToString()),
-                    date_peremption = DateTime.Parse(reader["date_peremption"].ToString()),
-                    fournisseur_id = int.Parse(reader["fournisseur_id"].ToString())
-                };
-                medicaments.Add(medicament);
+                if (_connection.State == ConnectionState.Open)
+                    _connection.Close();
             }
-            reader.Close();
-            connection.Close();
-            return medicaments;
         }
 
-        //AFFICHAGE MEDICAMENT
-        public void afficherMedicament()
+        // List all Medicaments with quantity (optional join with lot)
+        public DataTable ListerAvecQuantite()
         {
-            Console.WriteLine("Nom: " + nom);
-            Console.WriteLine("Reference: " + reference);
-            Console.WriteLine("Description: " + description);
-            Console.WriteLine("Dosage: " + dosage);
-            Console.WriteLine("Forme: " + forme);
-            Console.WriteLine("Prix unitaire: " + prix_unitaire);
-            Console.WriteLine("Quantite en stock: " + quantite_stock);
-            Console.WriteLine("Seuil d'alerte: " + seuil_alerte);
-            Console.WriteLine("Date de peremption: " + date_peremption.ToString("yyyy-MM-dd"));
-            Console.WriteLine("Fournisseur ID: " + fournisseur_id);
-        }
-        public static void afficherListeMedicaments(List<Medicament> medicaments)
-        {
-            foreach (Medicament medicament in medicaments)
+            DataTable table = new DataTable();
+            try
             {
-                medicament.afficherMedicament();
-                Console.WriteLine("-----------------------");
+                string sql = @"
+                    SELECT m.id, m.nom AS Nom, m.reference AS Référence, m.categorie AS Catégorie,
+                           m.prix_vente AS PrixVente, ISNULL(SUM(l.quantite_stock),0) AS QuantitéTotale
+                    FROM medicament m
+                    LEFT JOIN lot l ON m.id = l.medicament_id
+                    GROUP BY m.id, m.nom, m.reference, m.categorie, m.prix_vente
+                    ORDER BY m.nom;
+                ";
+
+                SqlDataAdapter adapter = new SqlDataAdapter(sql, _connection);
+                adapter.Fill(table);
             }
-        }
-
-
-        //AJOUTER, SUPPRIMER, MODIFIER MEDICAMENT
-        public void ajouterMedicament(string nom, string reference, string description, string dosage, string forme, float prix_unitaire, int quantite_stock, int seuil_alerte, DateTime date_peremption, int fournisseur_id)
-        {
-
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = $"Server={server};Database={database};Integrated Security=SSPI;TrustServerCertificate=True;";
-
-            connection.Open();
-            Console.WriteLine("Connection successful!");
-
-            string query = "INSERT INTO medicament VALUES ('" + nom + "', '" + reference + "', '" + description + "', '" + dosage + "', '" + forme + "', " + prix_unitaire + ", " + quantite_stock + ", " + seuil_alerte + ", '" + date_peremption.ToString("yyyy-MM-dd") + "', "+ fournisseur_id +", '"+ DateTime.Now.ToString("yyyy-MM-dd") + "', '"+ DateTime.Now.ToString("yyyy-MM-dd") + "')";
-
-            SqlCommand command = new SqlCommand(query, connection);
-            command.ExecuteNonQuery();
-            connection.Close();
-
-        }
-
-        public bool supprimerEmployer(int id)
-        {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = $"Server={server};Database={database};Integrated Security=SSPI;TrustServerCertificate=True;";
-
-            connection.Open();
-            Console.WriteLine("Connection successful!");
-
-            string query1 = "SELECT * FROM medicament WHERE id=" + id;
-            SqlCommand cmd = new SqlCommand(query1, connection);
-
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            if (reader.Read())
+            catch (Exception ex)
             {
-                reader.Close();
-                string query = "DELETE FROM medicament WHERE id=" + id;
-                SqlCommand command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
-                connection.Close();
-                return true;
-
+                Console.WriteLine("Erreur ListerAvecQuantite: " + ex.Message);
             }
-            return false;
-        }
-        public void modifierMedicament(int id, string nom, string reference, string description, string dosage, string forme, float prix_unitaire, int quantite_stock, int seuil_alerte, DateTime date_peremption)
-        {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = $"Server={server};Database={database};Integrated Security=SSPI;TrustServerCertificate=True;";
-
-            connection.Open();
-            Console.WriteLine("Connection successful!");
-
-            string query = "Update medicament SET nom = '" + nom + "', reference = '" + reference + "', description = '" + description + "', dosage = '" + dosage + "', forme = '" + forme + "', prix_unitaire = " + prix_unitaire + ", quantite_stock = " + quantite_stock + ", seuil_alerte = " + seuil_alerte + ", date_peremption = '" + date_peremption.ToString("yyyy-MM-dd") + "', date_modification = '"+ DateTime.Now.ToString("yyyy-MM-dd") + "' WHERE id = " + id;
-            SqlCommand command = new SqlCommand(query, connection);
-            command.ExecuteNonQuery();
-            connection.Close();
-
+            return table;
         }
     }
-    }
+}
