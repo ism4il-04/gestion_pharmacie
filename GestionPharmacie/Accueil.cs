@@ -98,8 +98,8 @@ namespace GestionPharmacie
                                      GROUP BY m.id
                                      HAVING ISNULL(SUM(l.quantite_stock), 0) < 10";
                 SqlCommand cmdAlertes = new SqlCommand(sqlAlertes, sqlConnection);
-                //int alertes = (int)cmdAlertes.ExecuteScalar();
-                //lblAlertes.Text = alertes.ToString();
+                int alertes = (int)cmdAlertes.ExecuteScalar();
+                lblAlertes.Text = alertes.ToString();
 
                 // Lots expirés ou à expirer dans 30 jours
                 string sqlPeremption = @"SELECT COUNT(*) FROM lot 
@@ -461,6 +461,20 @@ namespace GestionPharmacie
         private void lblValeurStockTitle_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ajouterMedicamentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AjouterMedicament f = new AjouterMedicament();
+            f.Show();
+            this.Hide();
+        }
+
+        private void modifierMedicamentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ModifierMedicament f = new ModifierMedicament();
+            f.Show();
+            this.Hide();
         }
     }
 }

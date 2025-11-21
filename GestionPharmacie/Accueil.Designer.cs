@@ -123,12 +123,14 @@ namespace GestionPharmacie
             ajouterMedicamentToolStripMenuItem.Name = "ajouterMedicamentToolStripMenuItem";
             ajouterMedicamentToolStripMenuItem.Size = new Size(290, 30);
             ajouterMedicamentToolStripMenuItem.Text = "Ajouter Medicament";
+            ajouterMedicamentToolStripMenuItem.Click += ajouterMedicamentToolStripMenuItem_Click;
             // 
             // modifierMedicamentToolStripMenuItem
             // 
             modifierMedicamentToolStripMenuItem.Name = "modifierMedicamentToolStripMenuItem";
             modifierMedicamentToolStripMenuItem.Size = new Size(290, 30);
             modifierMedicamentToolStripMenuItem.Text = "Modifier Medicament";
+            modifierMedicamentToolStripMenuItem.Click += modifierMedicamentToolStripMenuItem_Click;
             // 
             // ajouterUnLotToolStripMenuItem
             // 
@@ -359,7 +361,7 @@ namespace GestionPharmacie
             btnRefresh.Location = new Point(700, 5);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            btnRefresh.Size = new Size(120, 40);
+            btnRefresh.Size = new Size(147, 40);
             btnRefresh.TabIndex = 2;
             btnRefresh.Text = "🔄 Actualiser";
             btnRefresh.Click += btnRefresh_Click;
@@ -432,10 +434,10 @@ namespace GestionPharmacie
             btnPrevious.FillColor = Color.FromArgb(0, 122, 204);
             btnPrevious.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnPrevious.ForeColor = Color.White;
-            btnPrevious.Location = new Point(300, 5);
+            btnPrevious.Location = new Point(270, 5);
             btnPrevious.Name = "btnPrevious";
             btnPrevious.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            btnPrevious.Size = new Size(100, 40);
+            btnPrevious.Size = new Size(130, 40);
             btnPrevious.TabIndex = 0;
             btnPrevious.Text = "◄ Précédent";
             btnPrevious.Click += btnPrevious_Click;
@@ -460,7 +462,7 @@ namespace GestionPharmacie
             btnNext.Location = new Point(640, 5);
             btnNext.Name = "btnNext";
             btnNext.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            btnNext.Size = new Size(100, 40);
+            btnNext.Size = new Size(120, 40);
             btnNext.TabIndex = 2;
             btnNext.Text = "Suivant ►";
             btnNext.Click += btnNext_Click;
@@ -515,7 +517,7 @@ namespace GestionPharmacie
             btnSupprimer.Location = new Point(620, 10);
             btnSupprimer.Name = "btnSupprimer";
             btnSupprimer.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            btnSupprimer.Size = new Size(140, 45);
+            btnSupprimer.Size = new Size(159, 45);
             btnSupprimer.TabIndex = 2;
             btnSupprimer.Text = "🗑️ Supprimer";
             btnSupprimer.Click += btnSupprimer_Click;
@@ -663,7 +665,6 @@ namespace GestionPharmacie
         private Guna2Button btnNext;
 
         private Panel panelActions;
-        private Guna2Button btnAjouter;
         private Guna2Button btnModifier;
         private Guna2Button btnSupprimer;
 
@@ -674,5 +675,6 @@ namespace GestionPharmacie
         private Panel panelGraphique;
         private Label lblGraphiqueTitle;
         private ListBox listBoxCategories;
+        private Guna2Button btnAjouter;
     }
 }

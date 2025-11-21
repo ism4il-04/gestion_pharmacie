@@ -168,6 +168,88 @@ namespace GestionPharmacie
             }
         }
 
+        public bool ChargerParReference(string reference)
+        {
+            try
+            {
+                string sql = "SELECT * FROM medicament WHERE reference=@reference";
+                using (SqlCommand cmd = new SqlCommand(sql, _connection))
+                {
+                    cmd.Parameters.AddWithValue("@reference", reference);
+                    _connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Id = Convert.ToInt32(reader["id"]);
+                            Nom = reader["nom"].ToString();
+                            Reference = reader["reference"].ToString();
+                            Description = reader["description"].ToString();
+                            Dosage = reader["dosage"].ToString();
+                            Categorie = reader["categorie"].ToString();
+                            PrixAchat = Convert.ToDecimal(reader["prix_achat"]);
+                            PrixVente = Convert.ToDecimal(reader["prix_vente"]);
+                            DateCreation = Convert.ToDateTime(reader["date_creation"]);
+                            DateModification = Convert.ToDateTime(reader["date_modification"]);
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur ChargerParId: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (_connection.State == ConnectionState.Open)
+                    _connection.Close();
+            }
+        }
+
+        public bool ChargerParNom(string nom)
+        {
+            try
+            {
+                string sql = "SELECT * FROM medicament WHERE nom=@nom";
+                using (SqlCommand cmd = new SqlCommand(sql, _connection))
+                {
+                    cmd.Parameters.AddWithValue("@nom", nom);
+                    _connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Id = Convert.ToInt32(reader["id"]);
+                            Nom = reader["nom"].ToString();
+                            Reference = reader["reference"].ToString();
+                            Description = reader["description"].ToString();
+                            Dosage = reader["dosage"].ToString();
+                            Categorie = reader["categorie"].ToString();
+                            PrixAchat = Convert.ToDecimal(reader["prix_achat"]);
+                            PrixVente = Convert.ToDecimal(reader["prix_vente"]);
+                            DateCreation = Convert.ToDateTime(reader["date_creation"]);
+                            DateModification = Convert.ToDateTime(reader["date_modification"]);
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur ChargerParId: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (_connection.State == ConnectionState.Open)
+                    _connection.Close();
+            }
+        }
+
         // List all Medicaments with quantity (optional join with lot)
         public DataTable ListerAvecQuantite()
         {
@@ -192,5 +274,38 @@ namespace GestionPharmacie
             }
             return table;
         }
+
+        public int GetIdByRef()
+        {
+            int id = -1; // default if not found
+            try
+            {
+                string sql = @"SELECT id FROM medicament WHERE reference=@Reference";
+
+                using (SqlCommand cmd = new SqlCommand(sql, _connection))
+                {
+                    cmd.Parameters.AddWithValue("@Reference", Reference);
+
+                    if (_connection.State != ConnectionState.Open)
+                        _connection.Open();
+
+                    object result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                        id = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur GetIdByRef: " + ex.Message);
+            }
+            finally
+            {
+                if (_connection.State == ConnectionState.Open)
+                    _connection.Close();
+            }
+
+            return id;
+        }
+
     }
 }
