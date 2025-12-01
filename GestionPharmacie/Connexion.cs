@@ -1,4 +1,4 @@
-﻿using DotNetEnv;
+﻿//using DotNetEnv;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -14,10 +14,10 @@ namespace GestionPharmacie
         // Remove static readonly fields, use local variables instead
         public static SqlConnection connecter()
         {
-            Env.Load(); // Loads .env file once
+            //Env.Load(); // Loads .env file once
 
-            string server = Env.GetString("DB_SERVER");
-            string database = Env.GetString("DB_NAME");
+            //string server = Env.GetString("DB_SERVER");
+            //string database = Env.GetString("DB_NAME");
 
             SqlConnection sqlConnection = new SqlConnection();
             sqlConnection.ConnectionString = $"Data Source=ISMAIL_LENOVO;Initial Catalog=pharmacie;Integrated Security=SSPI;TrustServerCertificate=True;";

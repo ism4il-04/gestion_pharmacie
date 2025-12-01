@@ -476,5 +476,17 @@ namespace GestionPharmacie
             f.Show();
             this.Hide();
         }
+
+        private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AccueilClient f = new AccueilClient();
+            f.Show();
+            this.Hide();
+        }
+
+        private void gridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

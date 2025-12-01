@@ -52,6 +52,9 @@ namespace GestionPharmacie
             modifierMedicamentToolStripMenuItem = new ToolStripMenuItem();
             ajouterUnLotToolStripMenuItem = new ToolStripMenuItem();
             clientsToolStripMenuItem = new ToolStripMenuItem();
+            ajouterClientToolStripMenuItem = new ToolStripMenuItem();
+            modifierClientToolStripMenuItem = new ToolStripMenuItem();
+            archiverClientToolStripMenuItem = new ToolStripMenuItem();
             commandesToolStripMenuItem = new ToolStripMenuItem();
             panelStats = new Panel();
             cardTotalMedicaments = new Guna2Panel();
@@ -140,9 +143,29 @@ namespace GestionPharmacie
             // 
             // clientsToolStripMenuItem
             // 
+            clientsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ajouterClientToolStripMenuItem, modifierClientToolStripMenuItem, archiverClientToolStripMenuItem });
             clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
             clientsToolStripMenuItem.Size = new Size(85, 29);
             clientsToolStripMenuItem.Text = "Clients";
+            clientsToolStripMenuItem.Click += clientsToolStripMenuItem_Click;
+            // 
+            // ajouterClientToolStripMenuItem
+            // 
+            ajouterClientToolStripMenuItem.Name = "ajouterClientToolStripMenuItem";
+            ajouterClientToolStripMenuItem.Size = new Size(231, 30);
+            ajouterClientToolStripMenuItem.Text = "Ajouter Client";
+            // 
+            // modifierClientToolStripMenuItem
+            // 
+            modifierClientToolStripMenuItem.Name = "modifierClientToolStripMenuItem";
+            modifierClientToolStripMenuItem.Size = new Size(231, 30);
+            modifierClientToolStripMenuItem.Text = "Modifier Client";
+            // 
+            // archiverClientToolStripMenuItem
+            // 
+            archiverClientToolStripMenuItem.Name = "archiverClientToolStripMenuItem";
+            archiverClientToolStripMenuItem.Size = new Size(231, 30);
+            archiverClientToolStripMenuItem.Text = "Archiver Client";
             // 
             // commandesToolStripMenuItem
             // 
@@ -416,6 +439,7 @@ namespace GestionPharmacie
             gridview.ThemeStyle.RowsStyle.Height = 29;
             gridview.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             gridview.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            gridview.CellContentClick += gridview_CellContentClick;
             // 
             // panelPagination
             // 
@@ -676,5 +700,8 @@ namespace GestionPharmacie
         private Label lblGraphiqueTitle;
         private ListBox listBoxCategories;
         private Guna2Button btnAjouter;
+        private ToolStripMenuItem ajouterClientToolStripMenuItem;
+        private ToolStripMenuItem modifierClientToolStripMenuItem;
+        private ToolStripMenuItem archiverClientToolStripMenuItem;
     }
 }
