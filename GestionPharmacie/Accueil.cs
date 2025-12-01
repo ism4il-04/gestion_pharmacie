@@ -92,14 +92,23 @@ namespace GestionPharmacie
                 lblValeurStock.Text = valeurStock.ToString("N2") + " DH";
 
                 // Alertes stock faible
-                string sqlAlertes = @"SELECT COUNT(DISTINCT m.id)
-                                     FROM medicament m
-                                     LEFT JOIN lot l ON m.id = l.medicament_id
-                                     GROUP BY m.id
-                                     HAVING ISNULL(SUM(l.quantite_stock), 0) < 10";
+                string sqlAlertes = @"
+                                    SELECT COUNT(*)
+                                            FROM (
+                                                SELECT m.id, ISNULL(SUM(l.quantite_stock),0) AS total_stock, MIN(l.seuil_alerte) AS seuil
+                                                FROM medicament m
+                                                LEFT JOIN lot l 
+                                                    ON m.id = l.medicament_id
+                                                    AND l.date_peremption > GETDATE()
+                                                GROUP BY m.id
+                                                HAVING ISNULL(SUM(l.quantite_stock),0) < ISNULL(MIN(l.seuil_alerte),10)
+                                            ) AS t;";
+
                 SqlCommand cmdAlertes = new SqlCommand(sqlAlertes, sqlConnection);
-                int alertes = (int)cmdAlertes.ExecuteScalar();
+                int alertes = (int)(cmdAlertes.ExecuteScalar() ?? 0); // <-- safely handle null
+
                 lblAlertes.Text = alertes.ToString();
+
 
                 // Lots expirés ou à expirer dans 30 jours
                 string sqlPeremption = @"SELECT COUNT(*) FROM lot 
@@ -487,6 +496,13 @@ namespace GestionPharmacie
         private void gridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void ajouterUnLotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AjouterLot f = new AjouterLot();
+            f.Show();
+            this.Hide();
         }
     }
 }

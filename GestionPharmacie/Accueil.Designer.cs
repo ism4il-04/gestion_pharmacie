@@ -140,6 +140,7 @@ namespace GestionPharmacie
             ajouterUnLotToolStripMenuItem.Name = "ajouterUnLotToolStripMenuItem";
             ajouterUnLotToolStripMenuItem.Size = new Size(290, 30);
             ajouterUnLotToolStripMenuItem.Text = "Ajouter un lot";
+            ajouterUnLotToolStripMenuItem.Click += ajouterUnLotToolStripMenuItem_Click;
             // 
             // clientsToolStripMenuItem
             // 
