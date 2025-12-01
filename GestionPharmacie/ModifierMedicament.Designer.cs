@@ -54,9 +54,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             menuStrip1 = new MenuStrip();
             medicamentsToolStripMenuItem = new ToolStripMenuItem();
-            ajouterMedicamentToolStripMenuItem = new ToolStripMenuItem();
-            modifierMedicamentToolStripMenuItem = new ToolStripMenuItem();
-            ajouterUnLotToolStripMenuItem = new ToolStripMenuItem();
             clientsToolStripMenuItem = new ToolStripMenuItem();
             commandesToolStripMenuItem = new ToolStripMenuItem();
             label1 = new Label();
@@ -96,29 +93,10 @@
             // 
             // medicamentsToolStripMenuItem
             // 
-            medicamentsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ajouterMedicamentToolStripMenuItem, modifierMedicamentToolStripMenuItem, ajouterUnLotToolStripMenuItem });
             medicamentsToolStripMenuItem.Name = "medicamentsToolStripMenuItem";
             medicamentsToolStripMenuItem.Size = new Size(144, 29);
             medicamentsToolStripMenuItem.Text = "Medicaments";
             medicamentsToolStripMenuItem.Click += medicamentsToolStripMenuItem_Click;
-            // 
-            // ajouterMedicamentToolStripMenuItem
-            // 
-            ajouterMedicamentToolStripMenuItem.Name = "ajouterMedicamentToolStripMenuItem";
-            ajouterMedicamentToolStripMenuItem.Size = new Size(290, 30);
-            ajouterMedicamentToolStripMenuItem.Text = "Ajouter Medicament";
-            // 
-            // modifierMedicamentToolStripMenuItem
-            // 
-            modifierMedicamentToolStripMenuItem.Name = "modifierMedicamentToolStripMenuItem";
-            modifierMedicamentToolStripMenuItem.Size = new Size(290, 30);
-            modifierMedicamentToolStripMenuItem.Text = "Modifier Medicament";
-            // 
-            // ajouterUnLotToolStripMenuItem
-            // 
-            ajouterUnLotToolStripMenuItem.Name = "ajouterUnLotToolStripMenuItem";
-            ajouterUnLotToolStripMenuItem.Size = new Size(290, 30);
-            ajouterUnLotToolStripMenuItem.Text = "Ajouter un lot";
             // 
             // clientsToolStripMenuItem
             // 
@@ -440,9 +418,6 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem medicamentsToolStripMenuItem;
-        private ToolStripMenuItem ajouterMedicamentToolStripMenuItem;
-        private ToolStripMenuItem modifierMedicamentToolStripMenuItem;
-        private ToolStripMenuItem ajouterUnLotToolStripMenuItem;
         private ToolStripMenuItem clientsToolStripMenuItem;
         private ToolStripMenuItem commandesToolStripMenuItem;
         private Label label1;

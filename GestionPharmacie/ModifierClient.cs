@@ -85,5 +85,12 @@ namespace GestionPharmacie
             AccueilClient f = new AccueilClient();
             f.Show();
         }
+
+        private void medicamentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Accueil f = new Accueil();
+            f.Show();
+            this.Hide();
+        }
     }
 }

@@ -73,5 +73,19 @@ namespace GestionPharmacie
         {
 
         }
+
+        private void medicamentsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Accueil accueilForm = new Accueil();
+            accueilForm.Show();
+        }
+
+        private void commandesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AccueilCommande f = new AccueilCommande();
+            this.Hide();
+            f.Show();
+        }
     }
 }

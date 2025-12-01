@@ -58,13 +58,7 @@
             btnNom = new Guna.UI2.WinForms.Guna2Button();
             menuStrip1 = new MenuStrip();
             medicamentsToolStripMenuItem = new ToolStripMenuItem();
-            toolStripMenuItem1 = new ToolStripMenuItem();
-            toolStripMenuItem2 = new ToolStripMenuItem();
-            toolStripMenuItem3 = new ToolStripMenuItem();
             clientsToolStripMenuItem = new ToolStripMenuItem();
-            toolStripMenuItem4 = new ToolStripMenuItem();
-            toolStripMenuItem5 = new ToolStripMenuItem();
-            toolStripMenuItem6 = new ToolStripMenuItem();
             commandesToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -250,54 +244,17 @@
             // 
             // medicamentsToolStripMenuItem
             // 
-            medicamentsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem1, toolStripMenuItem2, toolStripMenuItem3 });
             medicamentsToolStripMenuItem.Name = "medicamentsToolStripMenuItem";
             medicamentsToolStripMenuItem.Size = new Size(144, 29);
             medicamentsToolStripMenuItem.Text = "Medicaments";
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(290, 30);
-            toolStripMenuItem1.Text = "Ajouter Medicament";
-            // 
-            // toolStripMenuItem2
-            // 
-            toolStripMenuItem2.Name = "toolStripMenuItem2";
-            toolStripMenuItem2.Size = new Size(290, 30);
-            toolStripMenuItem2.Text = "Modifier Medicament";
-            // 
-            // toolStripMenuItem3
-            // 
-            toolStripMenuItem3.Name = "toolStripMenuItem3";
-            toolStripMenuItem3.Size = new Size(290, 30);
-            toolStripMenuItem3.Text = "Ajouter un lot";
+            medicamentsToolStripMenuItem.Click += medicamentsToolStripMenuItem_Click;
             // 
             // clientsToolStripMenuItem
             // 
-            clientsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem4, toolStripMenuItem5, toolStripMenuItem6 });
             clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
             clientsToolStripMenuItem.Size = new Size(85, 29);
             clientsToolStripMenuItem.Text = "Clients";
             clientsToolStripMenuItem.Click += clientsToolStripMenuItem_Click;
-            // 
-            // toolStripMenuItem4
-            // 
-            toolStripMenuItem4.Name = "toolStripMenuItem4";
-            toolStripMenuItem4.Size = new Size(231, 30);
-            toolStripMenuItem4.Text = "Ajouter Client";
-            // 
-            // toolStripMenuItem5
-            // 
-            toolStripMenuItem5.Name = "toolStripMenuItem5";
-            toolStripMenuItem5.Size = new Size(231, 30);
-            toolStripMenuItem5.Text = "Modifier Client";
-            // 
-            // toolStripMenuItem6
-            // 
-            toolStripMenuItem6.Name = "toolStripMenuItem6";
-            toolStripMenuItem6.Size = new Size(231, 30);
-            toolStripMenuItem6.Text = "Archiver Client";
             // 
             // commandesToolStripMenuItem
             // 
@@ -347,13 +304,7 @@
         private Guna.UI2.WinForms.Guna2Button btnNom;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem medicamentsToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem1;
-        private ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripMenuItem toolStripMenuItem3;
         private ToolStripMenuItem clientsToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem4;
-        private ToolStripMenuItem toolStripMenuItem5;
-        private ToolStripMenuItem toolStripMenuItem6;
         private ToolStripMenuItem commandesToolStripMenuItem;
     }
 }

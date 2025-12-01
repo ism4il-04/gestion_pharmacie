@@ -44,13 +44,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             menuStrip1 = new MenuStrip();
             medicamentsToolStripMenuItem = new ToolStripMenuItem();
-            ajouterMedicamentToolStripMenuItem = new ToolStripMenuItem();
-            modifierMedicamentToolStripMenuItem = new ToolStripMenuItem();
-            ajouterUnLotToolStripMenuItem = new ToolStripMenuItem();
             clientsToolStripMenuItem = new ToolStripMenuItem();
-            ajouterClientToolStripMenuItem = new ToolStripMenuItem();
-            modifierClientToolStripMenuItem = new ToolStripMenuItem();
-            archiverClientToolStripMenuItem = new ToolStripMenuItem();
             commandesToolStripMenuItem = new ToolStripMenuItem();
             btnReinitialiser = new Guna.UI2.WinForms.Guna2Button();
             btnRetour = new Guna.UI2.WinForms.Guna2Button();
@@ -81,53 +75,17 @@
             // 
             // medicamentsToolStripMenuItem
             // 
-            medicamentsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ajouterMedicamentToolStripMenuItem, modifierMedicamentToolStripMenuItem, ajouterUnLotToolStripMenuItem });
             medicamentsToolStripMenuItem.Name = "medicamentsToolStripMenuItem";
             medicamentsToolStripMenuItem.Size = new Size(144, 29);
             medicamentsToolStripMenuItem.Text = "Medicaments";
-            // 
-            // ajouterMedicamentToolStripMenuItem
-            // 
-            ajouterMedicamentToolStripMenuItem.Name = "ajouterMedicamentToolStripMenuItem";
-            ajouterMedicamentToolStripMenuItem.Size = new Size(290, 30);
-            ajouterMedicamentToolStripMenuItem.Text = "Ajouter Medicament";
-            // 
-            // modifierMedicamentToolStripMenuItem
-            // 
-            modifierMedicamentToolStripMenuItem.Name = "modifierMedicamentToolStripMenuItem";
-            modifierMedicamentToolStripMenuItem.Size = new Size(290, 30);
-            modifierMedicamentToolStripMenuItem.Text = "Modifier Medicament";
-            // 
-            // ajouterUnLotToolStripMenuItem
-            // 
-            ajouterUnLotToolStripMenuItem.Name = "ajouterUnLotToolStripMenuItem";
-            ajouterUnLotToolStripMenuItem.Size = new Size(290, 30);
-            ajouterUnLotToolStripMenuItem.Text = "Ajouter un lot";
+            medicamentsToolStripMenuItem.Click += medicamentsToolStripMenuItem_Click;
             // 
             // clientsToolStripMenuItem
             // 
-            clientsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ajouterClientToolStripMenuItem, modifierClientToolStripMenuItem, archiverClientToolStripMenuItem });
             clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
             clientsToolStripMenuItem.Size = new Size(85, 29);
             clientsToolStripMenuItem.Text = "Clients";
-            // 
-            // ajouterClientToolStripMenuItem
-            // 
-            ajouterClientToolStripMenuItem.Name = "ajouterClientToolStripMenuItem";
-            ajouterClientToolStripMenuItem.Size = new Size(231, 30);
-            ajouterClientToolStripMenuItem.Text = "Ajouter Client";
-            // 
-            // modifierClientToolStripMenuItem
-            // 
-            modifierClientToolStripMenuItem.Name = "modifierClientToolStripMenuItem";
-            modifierClientToolStripMenuItem.Size = new Size(231, 30);
-            modifierClientToolStripMenuItem.Text = "Modifier Client";
-            // 
-            // archiverClientToolStripMenuItem
-            // 
-            archiverClientToolStripMenuItem.Name = "archiverClientToolStripMenuItem";
-            archiverClientToolStripMenuItem.Size = new Size(231, 30);
-            archiverClientToolStripMenuItem.Text = "Archiver Client";
+            clientsToolStripMenuItem.Click += clientsToolStripMenuItem_Click;
             // 
             // commandesToolStripMenuItem
             // 
@@ -325,13 +283,7 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem medicamentsToolStripMenuItem;
-        private ToolStripMenuItem ajouterMedicamentToolStripMenuItem;
-        private ToolStripMenuItem modifierMedicamentToolStripMenuItem;
-        private ToolStripMenuItem ajouterUnLotToolStripMenuItem;
         private ToolStripMenuItem clientsToolStripMenuItem;
-        private ToolStripMenuItem ajouterClientToolStripMenuItem;
-        private ToolStripMenuItem modifierClientToolStripMenuItem;
-        private ToolStripMenuItem archiverClientToolStripMenuItem;
         private ToolStripMenuItem commandesToolStripMenuItem;
         private Guna.UI2.WinForms.Guna2Button btnReinitialiser;
         private Guna.UI2.WinForms.Guna2Button btnRetour;

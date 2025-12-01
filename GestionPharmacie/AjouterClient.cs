@@ -59,14 +59,28 @@ namespace GestionPharmacie
                     txtTele.Clear();
                     txtAdresse.Clear();
                     txtEmail.Clear();
-               
+
                 }
                 else
                 {
                     MessageBox.Show("Erreur lors de l'ajout du client.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-                
+
+        }
+
+        private void medicamentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Accueil f = new Accueil();
+            this.Hide();
+            f.Show();
+        }
+
+        private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AccueilClient f = new AccueilClient();
+            f.Show();
+            this.Hide();
         }
     }
 }
