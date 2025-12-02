@@ -11,6 +11,7 @@ namespace GestionPharmacie
         public int ClientId { get; set; }
         public int UtilisateurId { get; set; }
         public DateTime DateCommande { get; set; }
+        public string Statut { get; set; } = "en_cours";
         public decimal Total { get; set; }
 
         public List<CommandeDetails> Details { get; set; } = new();
@@ -26,9 +27,9 @@ namespace GestionPharmacie
         {
             try
             {
-                string sql = @"INSERT INTO commande (client_id, utilisateur_id, date_commande, total)
+                string sql = @"INSERT INTO commande (client_id, utilisateur_id, date_commande, statut, total)
                                OUTPUT INSERTED.id
-                               VALUES (@ClientId, @UtilisateurId, @DateCommande, @Total);";
+                               VALUES (@ClientId, @UtilisateurId, @DateCommande, @Statut, @Total);";
 
                 using (SqlCommand cmd = new SqlCommand(sql, _connection))
                 {
@@ -37,6 +38,7 @@ namespace GestionPharmacie
                     cmd.Parameters.AddWithValue("@ClientId", ClientId);
                     cmd.Parameters.AddWithValue("@UtilisateurId", UtilisateurId);
                     cmd.Parameters.AddWithValue("@DateCommande", DateCommande);
+                    cmd.Parameters.AddWithValue("@Statut", Statut);
                     cmd.Parameters.AddWithValue("@Total", Total);
 
                     _connection.Open();

@@ -173,6 +173,7 @@ namespace GestionPharmacie
             commandesToolStripMenuItem.Name = "commandesToolStripMenuItem";
             commandesToolStripMenuItem.Size = new Size(136, 29);
             commandesToolStripMenuItem.Text = "Commandes";
+            commandesToolStripMenuItem.Click += commandesToolStripMenuItem_Click;
             // 
             // panelStats
             // 

@@ -504,5 +504,12 @@ namespace GestionPharmacie
             f.Show();
             this.Hide();
         }
+
+        private void commandesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AccueilCommande f = new AccueilCommande();
+            f.Show();
+            this.Hide();
+        }
     }
 }
