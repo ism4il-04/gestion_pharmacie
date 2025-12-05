@@ -20,7 +20,7 @@ namespace GestionPharmacie
             //string database = Env.GetString("DB_NAME");
 
             SqlConnection sqlConnection = new SqlConnection();
-            sqlConnection.ConnectionString = $"Data Source=ISMAIL_LENOVO;Initial Catalog=pharmacie;Integrated Security=SSPI;TrustServerCertificate=True;";
+            sqlConnection.ConnectionString = $"server=localhost;Initial Catalog=pharmacie;Integrated Security=SSPI;TrustServerCertificate=True;";
             return sqlConnection;
         }
 
