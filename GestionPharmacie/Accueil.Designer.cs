@@ -111,34 +111,35 @@ namespace GestionPharmacie
             menuStrip1.Items.AddRange(new ToolStripItem[] { medicamentsToolStripMenuItem, clientsToolStripMenuItem, commandesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1600, 33);
+            menuStrip1.Padding = new Padding(8, 2, 0, 2);
+            menuStrip1.Size = new Size(2000, 38);
             menuStrip1.TabIndex = 0;
             // 
             // medicamentsToolStripMenuItem
             // 
             medicamentsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ajouterMedicamentToolStripMenuItem, modifierMedicamentToolStripMenuItem, ajouterUnLotToolStripMenuItem });
             medicamentsToolStripMenuItem.Name = "medicamentsToolStripMenuItem";
-            medicamentsToolStripMenuItem.Size = new Size(144, 29);
+            medicamentsToolStripMenuItem.Size = new Size(169, 34);
             medicamentsToolStripMenuItem.Text = "Medicaments";
             // 
             // ajouterMedicamentToolStripMenuItem
             // 
             ajouterMedicamentToolStripMenuItem.Name = "ajouterMedicamentToolStripMenuItem";
-            ajouterMedicamentToolStripMenuItem.Size = new Size(290, 30);
+            ajouterMedicamentToolStripMenuItem.Size = new Size(341, 38);
             ajouterMedicamentToolStripMenuItem.Text = "Ajouter Medicament";
             ajouterMedicamentToolStripMenuItem.Click += ajouterMedicamentToolStripMenuItem_Click;
             // 
             // modifierMedicamentToolStripMenuItem
             // 
             modifierMedicamentToolStripMenuItem.Name = "modifierMedicamentToolStripMenuItem";
-            modifierMedicamentToolStripMenuItem.Size = new Size(290, 30);
+            modifierMedicamentToolStripMenuItem.Size = new Size(341, 38);
             modifierMedicamentToolStripMenuItem.Text = "Modifier Medicament";
             modifierMedicamentToolStripMenuItem.Click += modifierMedicamentToolStripMenuItem_Click;
             // 
             // ajouterUnLotToolStripMenuItem
             // 
             ajouterUnLotToolStripMenuItem.Name = "ajouterUnLotToolStripMenuItem";
-            ajouterUnLotToolStripMenuItem.Size = new Size(290, 30);
+            ajouterUnLotToolStripMenuItem.Size = new Size(341, 38);
             ajouterUnLotToolStripMenuItem.Text = "Ajouter un lot";
             ajouterUnLotToolStripMenuItem.Click += ajouterUnLotToolStripMenuItem_Click;
             // 
@@ -146,32 +147,32 @@ namespace GestionPharmacie
             // 
             clientsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ajouterClientToolStripMenuItem, modifierClientToolStripMenuItem, archiverClientToolStripMenuItem });
             clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            clientsToolStripMenuItem.Size = new Size(85, 29);
+            clientsToolStripMenuItem.Size = new Size(99, 34);
             clientsToolStripMenuItem.Text = "Clients";
             clientsToolStripMenuItem.Click += clientsToolStripMenuItem_Click;
             // 
             // ajouterClientToolStripMenuItem
             // 
             ajouterClientToolStripMenuItem.Name = "ajouterClientToolStripMenuItem";
-            ajouterClientToolStripMenuItem.Size = new Size(231, 30);
+            ajouterClientToolStripMenuItem.Size = new Size(271, 38);
             ajouterClientToolStripMenuItem.Text = "Ajouter Client";
             // 
             // modifierClientToolStripMenuItem
             // 
             modifierClientToolStripMenuItem.Name = "modifierClientToolStripMenuItem";
-            modifierClientToolStripMenuItem.Size = new Size(231, 30);
+            modifierClientToolStripMenuItem.Size = new Size(271, 38);
             modifierClientToolStripMenuItem.Text = "Modifier Client";
             // 
             // archiverClientToolStripMenuItem
             // 
             archiverClientToolStripMenuItem.Name = "archiverClientToolStripMenuItem";
-            archiverClientToolStripMenuItem.Size = new Size(231, 30);
+            archiverClientToolStripMenuItem.Size = new Size(271, 38);
             archiverClientToolStripMenuItem.Text = "Archiver Client";
             // 
             // commandesToolStripMenuItem
             // 
             commandesToolStripMenuItem.Name = "commandesToolStripMenuItem";
-            commandesToolStripMenuItem.Size = new Size(136, 29);
+            commandesToolStripMenuItem.Size = new Size(157, 34);
             commandesToolStripMenuItem.Text = "Commandes";
             commandesToolStripMenuItem.Click += commandesToolStripMenuItem_Click;
             // 
@@ -181,9 +182,10 @@ namespace GestionPharmacie
             panelStats.Controls.Add(cardValeurStock);
             panelStats.Controls.Add(cardAlertes);
             panelStats.Controls.Add(cardPeremption);
-            panelStats.Location = new Point(20, 50);
+            panelStats.Location = new Point(25, 62);
+            panelStats.Margin = new Padding(4, 4, 4, 4);
             panelStats.Name = "panelStats";
-            panelStats.Size = new Size(1040, 110);
+            panelStats.Size = new Size(1300, 138);
             panelStats.TabIndex = 1;
             // 
             // cardTotalMedicaments
@@ -194,19 +196,21 @@ namespace GestionPharmacie
             cardTotalMedicaments.Controls.Add(lblTotalMedicamentsTitle);
             cardTotalMedicaments.CustomizableEdges = customizableEdges1;
             cardTotalMedicaments.FillColor = Color.FromArgb(52, 152, 219);
-            cardTotalMedicaments.Location = new Point(10, 10);
+            cardTotalMedicaments.Location = new Point(12, 12);
+            cardTotalMedicaments.Margin = new Padding(4, 4, 4, 4);
             cardTotalMedicaments.Name = "cardTotalMedicaments";
             cardTotalMedicaments.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            cardTotalMedicaments.Size = new Size(240, 90);
+            cardTotalMedicaments.Size = new Size(300, 112);
             cardTotalMedicaments.TabIndex = 0;
             // 
             // lblTotalMedicaments
             // 
             lblTotalMedicaments.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblTotalMedicaments.ForeColor = Color.Black;
-            lblTotalMedicaments.Location = new Point(10, 35);
+            lblTotalMedicaments.Location = new Point(12, 44);
+            lblTotalMedicaments.Margin = new Padding(4, 0, 4, 0);
             lblTotalMedicaments.Name = "lblTotalMedicaments";
-            lblTotalMedicaments.Size = new Size(220, 45);
+            lblTotalMedicaments.Size = new Size(275, 56);
             lblTotalMedicaments.TabIndex = 1;
             lblTotalMedicaments.Text = "0";
             lblTotalMedicaments.TextAlign = ContentAlignment.MiddleCenter;
@@ -215,9 +219,10 @@ namespace GestionPharmacie
             // 
             lblTotalMedicamentsTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTotalMedicamentsTitle.ForeColor = Color.Black;
-            lblTotalMedicamentsTitle.Location = new Point(10, 10);
+            lblTotalMedicamentsTitle.Location = new Point(12, 12);
+            lblTotalMedicamentsTitle.Margin = new Padding(4, 0, 4, 0);
             lblTotalMedicamentsTitle.Name = "lblTotalMedicamentsTitle";
-            lblTotalMedicamentsTitle.Size = new Size(220, 25);
+            lblTotalMedicamentsTitle.Size = new Size(275, 31);
             lblTotalMedicamentsTitle.TabIndex = 0;
             lblTotalMedicamentsTitle.Text = "Total Médicaments";
             lblTotalMedicamentsTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -230,19 +235,21 @@ namespace GestionPharmacie
             cardValeurStock.Controls.Add(lblValeurStockTitle);
             cardValeurStock.CustomizableEdges = customizableEdges3;
             cardValeurStock.FillColor = Color.FromArgb(46, 204, 113);
-            cardValeurStock.Location = new Point(270, 10);
+            cardValeurStock.Location = new Point(338, 12);
+            cardValeurStock.Margin = new Padding(4, 4, 4, 4);
             cardValeurStock.Name = "cardValeurStock";
             cardValeurStock.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            cardValeurStock.Size = new Size(240, 90);
+            cardValeurStock.Size = new Size(300, 112);
             cardValeurStock.TabIndex = 1;
             // 
             // lblValeurStock
             // 
             lblValeurStock.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblValeurStock.ForeColor = Color.Black;
-            lblValeurStock.Location = new Point(10, 35);
+            lblValeurStock.Location = new Point(12, 44);
+            lblValeurStock.Margin = new Padding(4, 0, 4, 0);
             lblValeurStock.Name = "lblValeurStock";
-            lblValeurStock.Size = new Size(220, 45);
+            lblValeurStock.Size = new Size(275, 56);
             lblValeurStock.TabIndex = 1;
             lblValeurStock.Text = "0 DH";
             lblValeurStock.TextAlign = ContentAlignment.MiddleCenter;
@@ -251,9 +258,10 @@ namespace GestionPharmacie
             // 
             lblValeurStockTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblValeurStockTitle.ForeColor = Color.Black;
-            lblValeurStockTitle.Location = new Point(10, 10);
+            lblValeurStockTitle.Location = new Point(12, 12);
+            lblValeurStockTitle.Margin = new Padding(4, 0, 4, 0);
             lblValeurStockTitle.Name = "lblValeurStockTitle";
-            lblValeurStockTitle.Size = new Size(220, 25);
+            lblValeurStockTitle.Size = new Size(275, 31);
             lblValeurStockTitle.TabIndex = 0;
             lblValeurStockTitle.Text = "Valeur du Stock";
             lblValeurStockTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -267,19 +275,21 @@ namespace GestionPharmacie
             cardAlertes.Controls.Add(lblAlertesTitle);
             cardAlertes.CustomizableEdges = customizableEdges5;
             cardAlertes.FillColor = Color.FromArgb(241, 196, 15);
-            cardAlertes.Location = new Point(530, 10);
+            cardAlertes.Location = new Point(662, 12);
+            cardAlertes.Margin = new Padding(4, 4, 4, 4);
             cardAlertes.Name = "cardAlertes";
             cardAlertes.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            cardAlertes.Size = new Size(240, 90);
+            cardAlertes.Size = new Size(300, 112);
             cardAlertes.TabIndex = 2;
             // 
             // lblAlertes
             // 
             lblAlertes.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblAlertes.ForeColor = Color.Black;
-            lblAlertes.Location = new Point(10, 35);
+            lblAlertes.Location = new Point(12, 44);
+            lblAlertes.Margin = new Padding(4, 0, 4, 0);
             lblAlertes.Name = "lblAlertes";
-            lblAlertes.Size = new Size(220, 45);
+            lblAlertes.Size = new Size(275, 56);
             lblAlertes.TabIndex = 1;
             lblAlertes.Text = "0";
             lblAlertes.TextAlign = ContentAlignment.MiddleCenter;
@@ -288,9 +298,10 @@ namespace GestionPharmacie
             // 
             lblAlertesTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblAlertesTitle.ForeColor = Color.Black;
-            lblAlertesTitle.Location = new Point(10, 10);
+            lblAlertesTitle.Location = new Point(12, 12);
+            lblAlertesTitle.Margin = new Padding(4, 0, 4, 0);
             lblAlertesTitle.Name = "lblAlertesTitle";
-            lblAlertesTitle.Size = new Size(220, 25);
+            lblAlertesTitle.Size = new Size(275, 31);
             lblAlertesTitle.TabIndex = 0;
             lblAlertesTitle.Text = "Alertes Stock Faible";
             lblAlertesTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -303,19 +314,21 @@ namespace GestionPharmacie
             cardPeremption.Controls.Add(lblPeremptionTitle);
             cardPeremption.CustomizableEdges = customizableEdges7;
             cardPeremption.FillColor = Color.FromArgb(231, 76, 60);
-            cardPeremption.Location = new Point(790, 10);
+            cardPeremption.Location = new Point(988, 12);
+            cardPeremption.Margin = new Padding(4, 4, 4, 4);
             cardPeremption.Name = "cardPeremption";
             cardPeremption.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            cardPeremption.Size = new Size(240, 90);
+            cardPeremption.Size = new Size(300, 112);
             cardPeremption.TabIndex = 3;
             // 
             // lblPeremption
             // 
             lblPeremption.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             lblPeremption.ForeColor = Color.Black;
-            lblPeremption.Location = new Point(10, 35);
+            lblPeremption.Location = new Point(12, 44);
+            lblPeremption.Margin = new Padding(4, 0, 4, 0);
             lblPeremption.Name = "lblPeremption";
-            lblPeremption.Size = new Size(220, 45);
+            lblPeremption.Size = new Size(275, 56);
             lblPeremption.TabIndex = 1;
             lblPeremption.Text = "0";
             lblPeremption.TextAlign = ContentAlignment.MiddleCenter;
@@ -324,9 +337,10 @@ namespace GestionPharmacie
             // 
             lblPeremptionTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblPeremptionTitle.ForeColor = Color.Black;
-            lblPeremptionTitle.Location = new Point(10, 10);
+            lblPeremptionTitle.Location = new Point(12, 12);
+            lblPeremptionTitle.Margin = new Padding(4, 0, 4, 0);
             lblPeremptionTitle.Name = "lblPeremptionTitle";
-            lblPeremptionTitle.Size = new Size(220, 25);
+            lblPeremptionTitle.Size = new Size(275, 31);
             lblPeremptionTitle.TabIndex = 0;
             lblPeremptionTitle.Text = "Lots à Expirer (30j)";
             lblPeremptionTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -336,9 +350,10 @@ namespace GestionPharmacie
             panelRecherche.Controls.Add(txtRecherche);
             panelRecherche.Controls.Add(cmbFiltre);
             panelRecherche.Controls.Add(btnRefresh);
-            panelRecherche.Location = new Point(20, 170);
+            panelRecherche.Location = new Point(25, 212);
+            panelRecherche.Margin = new Padding(4, 4, 4, 4);
             panelRecherche.Name = "panelRecherche";
-            panelRecherche.Size = new Size(1040, 50);
+            panelRecherche.Size = new Size(1300, 62);
             panelRecherche.TabIndex = 2;
             // 
             // txtRecherche
@@ -347,13 +362,13 @@ namespace GestionPharmacie
             txtRecherche.CustomizableEdges = customizableEdges9;
             txtRecherche.DefaultText = "";
             txtRecherche.Font = new Font("Segoe UI", 10F);
-            txtRecherche.Location = new Point(10, 5);
-            txtRecherche.Margin = new Padding(3, 4, 3, 4);
+            txtRecherche.Location = new Point(12, 6);
+            txtRecherche.Margin = new Padding(4, 5, 4, 5);
             txtRecherche.Name = "txtRecherche";
             txtRecherche.PlaceholderText = "Rechercher un médicament...";
             txtRecherche.SelectedText = "";
             txtRecherche.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            txtRecherche.Size = new Size(400, 40);
+            txtRecherche.Size = new Size(500, 50);
             txtRecherche.TabIndex = 0;
             txtRecherche.TextChanged += txtRecherche_TextChanged;
             // 
@@ -369,12 +384,13 @@ namespace GestionPharmacie
             cmbFiltre.ForeColor = Color.FromArgb(68, 88, 112);
             cmbFiltre.ItemHeight = 30;
             cmbFiltre.Items.AddRange(new object[] { "Tous", "Stock faible (< 10)", "Stock épuisé", "Stock normal (≥ 10)" });
-            cmbFiltre.Location = new Point(430, 5);
+            cmbFiltre.Location = new Point(538, 6);
+            cmbFiltre.Margin = new Padding(4, 4, 4, 4);
             cmbFiltre.Name = "cmbFiltre";
             cmbFiltre.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            cmbFiltre.Size = new Size(250, 36);
+            cmbFiltre.Size = new Size(312, 36);
             cmbFiltre.TabIndex = 1;
-            cmbFiltre.SelectedIndexChanged += cmbFiltre_SelectedIndexChanged;
+            //cmbFiltre.SelectedIndexChanged += cmbFiltre_SelectedIndexChanged;
             // 
             // btnRefresh
             // 
@@ -383,10 +399,11 @@ namespace GestionPharmacie
             btnRefresh.FillColor = Color.FromArgb(0, 122, 204);
             btnRefresh.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnRefresh.ForeColor = Color.White;
-            btnRefresh.Location = new Point(700, 5);
+            btnRefresh.Location = new Point(875, 6);
+            btnRefresh.Margin = new Padding(4, 4, 4, 4);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            btnRefresh.Size = new Size(147, 40);
+            btnRefresh.Size = new Size(184, 50);
             btnRefresh.TabIndex = 2;
             btnRefresh.Text = "🔄 Actualiser";
             btnRefresh.Click += btnRefresh_Click;
@@ -413,12 +430,14 @@ namespace GestionPharmacie
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             gridview.DefaultCellStyle = dataGridViewCellStyle3;
             gridview.GridColor = Color.FromArgb(231, 229, 255);
-            gridview.Location = new Point(20, 230);
+            gridview.Location = new Point(25, 288);
+            gridview.Margin = new Padding(4, 4, 4, 4);
             gridview.Name = "gridview";
             gridview.ReadOnly = true;
             gridview.RowHeadersVisible = false;
             gridview.RowHeadersWidth = 51;
-            gridview.Size = new Size(1040, 450);
+            gridview.RowTemplate.Height = 29;
+            gridview.Size = new Size(1300, 562);
             gridview.TabIndex = 3;
             gridview.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             gridview.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -448,9 +467,10 @@ namespace GestionPharmacie
             panelPagination.Controls.Add(btnPrevious);
             panelPagination.Controls.Add(lblPagination);
             panelPagination.Controls.Add(btnNext);
-            panelPagination.Location = new Point(20, 690);
+            panelPagination.Location = new Point(25, 862);
+            panelPagination.Margin = new Padding(4, 4, 4, 4);
             panelPagination.Name = "panelPagination";
-            panelPagination.Size = new Size(1040, 50);
+            panelPagination.Size = new Size(1300, 62);
             panelPagination.TabIndex = 4;
             // 
             // btnPrevious
@@ -460,10 +480,11 @@ namespace GestionPharmacie
             btnPrevious.FillColor = Color.FromArgb(0, 122, 204);
             btnPrevious.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnPrevious.ForeColor = Color.White;
-            btnPrevious.Location = new Point(270, 5);
+            btnPrevious.Location = new Point(338, 6);
+            btnPrevious.Margin = new Padding(4, 4, 4, 4);
             btnPrevious.Name = "btnPrevious";
             btnPrevious.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            btnPrevious.Size = new Size(130, 40);
+            btnPrevious.Size = new Size(162, 50);
             btnPrevious.TabIndex = 0;
             btnPrevious.Text = "◄ Précédent";
             btnPrevious.Click += btnPrevious_Click;
@@ -471,9 +492,10 @@ namespace GestionPharmacie
             // lblPagination
             // 
             lblPagination.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblPagination.Location = new Point(420, 5);
+            lblPagination.Location = new Point(525, 6);
+            lblPagination.Margin = new Padding(4, 0, 4, 0);
             lblPagination.Name = "lblPagination";
-            lblPagination.Size = new Size(200, 40);
+            lblPagination.Size = new Size(250, 50);
             lblPagination.TabIndex = 1;
             lblPagination.Text = "Page 1 sur 1";
             lblPagination.TextAlign = ContentAlignment.MiddleCenter;
@@ -485,10 +507,11 @@ namespace GestionPharmacie
             btnNext.FillColor = Color.FromArgb(0, 122, 204);
             btnNext.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnNext.ForeColor = Color.White;
-            btnNext.Location = new Point(640, 5);
+            btnNext.Location = new Point(800, 6);
+            btnNext.Margin = new Padding(4, 4, 4, 4);
             btnNext.Name = "btnNext";
             btnNext.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            btnNext.Size = new Size(120, 40);
+            btnNext.Size = new Size(150, 50);
             btnNext.TabIndex = 2;
             btnNext.Text = "Suivant ►";
             btnNext.Click += btnNext_Click;
@@ -498,9 +521,10 @@ namespace GestionPharmacie
             panelActions.Controls.Add(btnAjouter);
             panelActions.Controls.Add(btnModifier);
             panelActions.Controls.Add(btnSupprimer);
-            panelActions.Location = new Point(20, 750);
+            panelActions.Location = new Point(25, 938);
+            panelActions.Margin = new Padding(4, 4, 4, 4);
             panelActions.Name = "panelActions";
-            panelActions.Size = new Size(1040, 60);
+            panelActions.Size = new Size(1300, 75);
             panelActions.TabIndex = 5;
             // 
             // btnAjouter
@@ -510,10 +534,11 @@ namespace GestionPharmacie
             btnAjouter.FillColor = Color.SeaGreen;
             btnAjouter.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnAjouter.ForeColor = Color.White;
-            btnAjouter.Location = new Point(300, 10);
+            btnAjouter.Location = new Point(375, 12);
+            btnAjouter.Margin = new Padding(4, 4, 4, 4);
             btnAjouter.Name = "btnAjouter";
             btnAjouter.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            btnAjouter.Size = new Size(140, 45);
+            btnAjouter.Size = new Size(175, 56);
             btnAjouter.TabIndex = 0;
             btnAjouter.Text = "➕ Ajouter";
             btnAjouter.Click += btnAjouter_Click;
@@ -525,10 +550,11 @@ namespace GestionPharmacie
             btnModifier.FillColor = Color.Goldenrod;
             btnModifier.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnModifier.ForeColor = Color.White;
-            btnModifier.Location = new Point(460, 10);
+            btnModifier.Location = new Point(575, 12);
+            btnModifier.Margin = new Padding(4, 4, 4, 4);
             btnModifier.Name = "btnModifier";
             btnModifier.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            btnModifier.Size = new Size(140, 45);
+            btnModifier.Size = new Size(175, 56);
             btnModifier.TabIndex = 1;
             btnModifier.Text = "✏️ Modifier";
             btnModifier.Click += btnModifier_Click;
@@ -540,10 +566,11 @@ namespace GestionPharmacie
             btnSupprimer.FillColor = Color.Firebrick;
             btnSupprimer.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnSupprimer.ForeColor = Color.White;
-            btnSupprimer.Location = new Point(620, 10);
+            btnSupprimer.Location = new Point(775, 12);
+            btnSupprimer.Margin = new Padding(4, 4, 4, 4);
             btnSupprimer.Name = "btnSupprimer";
             btnSupprimer.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            btnSupprimer.Size = new Size(159, 45);
+            btnSupprimer.Size = new Size(199, 56);
             btnSupprimer.TabIndex = 2;
             btnSupprimer.Text = "🗑️ Supprimer";
             btnSupprimer.Click += btnSupprimer_Click;
@@ -554,9 +581,10 @@ namespace GestionPharmacie
             panelAlertes.BorderStyle = BorderStyle.FixedSingle;
             panelAlertes.Controls.Add(lblAlertesPeremptionTitle);
             panelAlertes.Controls.Add(listBoxAlertes);
-            panelAlertes.Location = new Point(1080, 50);
+            panelAlertes.Location = new Point(1350, 62);
+            panelAlertes.Margin = new Padding(4, 4, 4, 4);
             panelAlertes.Name = "panelAlertes";
-            panelAlertes.Size = new Size(500, 370);
+            panelAlertes.Size = new Size(624, 462);
             panelAlertes.TabIndex = 6;
             // 
             // lblAlertesPeremptionTitle
@@ -566,9 +594,10 @@ namespace GestionPharmacie
             lblAlertesPeremptionTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblAlertesPeremptionTitle.ForeColor = Color.White;
             lblAlertesPeremptionTitle.Location = new Point(0, 0);
+            lblAlertesPeremptionTitle.Margin = new Padding(4, 0, 4, 0);
             lblAlertesPeremptionTitle.Name = "lblAlertesPeremptionTitle";
-            lblAlertesPeremptionTitle.Padding = new Padding(10);
-            lblAlertesPeremptionTitle.Size = new Size(498, 45);
+            lblAlertesPeremptionTitle.Padding = new Padding(12, 12, 12, 12);
+            lblAlertesPeremptionTitle.Size = new Size(622, 56);
             lblAlertesPeremptionTitle.TabIndex = 0;
             lblAlertesPeremptionTitle.Text = "⚠️ Alertes de Péremption (30 jours)";
             lblAlertesPeremptionTitle.TextAlign = ContentAlignment.MiddleLeft;
@@ -578,20 +607,23 @@ namespace GestionPharmacie
             listBoxAlertes.BackColor = Color.White;
             listBoxAlertes.Font = new Font("Segoe UI", 9F);
             listBoxAlertes.ForeColor = Color.FromArgb(192, 57, 43);
-            listBoxAlertes.Location = new Point(10, 55);
+            listBoxAlertes.ItemHeight = 25;
+            listBoxAlertes.Location = new Point(12, 69);
+            listBoxAlertes.Margin = new Padding(4, 4, 4, 4);
             listBoxAlertes.Name = "listBoxAlertes";
-            listBoxAlertes.Size = new Size(478, 304);
+            listBoxAlertes.Size = new Size(596, 379);
             listBoxAlertes.TabIndex = 1;
-            // 
+            listBoxAlertes.MouseClick += ListBoxAlertes_MouseClick;
             // panelGraphique
             // 
             panelGraphique.BackColor = Color.White;
             panelGraphique.BorderStyle = BorderStyle.FixedSingle;
             panelGraphique.Controls.Add(lblGraphiqueTitle);
             panelGraphique.Controls.Add(listBoxCategories);
-            panelGraphique.Location = new Point(1080, 440);
+            panelGraphique.Location = new Point(1350, 550);
+            panelGraphique.Margin = new Padding(4, 4, 4, 4);
             panelGraphique.Name = "panelGraphique";
-            panelGraphique.Size = new Size(500, 370);
+            panelGraphique.Size = new Size(624, 462);
             panelGraphique.TabIndex = 7;
             // 
             // lblGraphiqueTitle
@@ -601,9 +633,10 @@ namespace GestionPharmacie
             lblGraphiqueTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblGraphiqueTitle.ForeColor = Color.White;
             lblGraphiqueTitle.Location = new Point(0, 0);
+            lblGraphiqueTitle.Margin = new Padding(4, 0, 4, 0);
             lblGraphiqueTitle.Name = "lblGraphiqueTitle";
-            lblGraphiqueTitle.Padding = new Padding(10);
-            lblGraphiqueTitle.Size = new Size(498, 45);
+            lblGraphiqueTitle.Padding = new Padding(12, 12, 12, 12);
+            lblGraphiqueTitle.Size = new Size(622, 56);
             lblGraphiqueTitle.TabIndex = 0;
             lblGraphiqueTitle.Text = "📊 Stock par Catégorie (Top 10)";
             lblGraphiqueTitle.TextAlign = ContentAlignment.MiddleLeft;
@@ -613,17 +646,19 @@ namespace GestionPharmacie
             listBoxCategories.BackColor = Color.White;
             listBoxCategories.Font = new Font("Consolas", 10F);
             listBoxCategories.ForeColor = Color.FromArgb(0, 122, 204);
-            listBoxCategories.Location = new Point(10, 55);
+            listBoxCategories.ItemHeight = 23;
+            listBoxCategories.Location = new Point(12, 69);
+            listBoxCategories.Margin = new Padding(4, 4, 4, 4);
             listBoxCategories.Name = "listBoxCategories";
-            listBoxCategories.Size = new Size(478, 304);
+            listBoxCategories.Size = new Size(596, 372);
             listBoxCategories.TabIndex = 1;
             // 
             // Accueil
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(248, 249, 250);
-            ClientSize = new Size(1600, 830);
+            ClientSize = new Size(2000, 1038);
             Controls.Add(panelGraphique);
             Controls.Add(panelAlertes);
             Controls.Add(panelActions);
@@ -633,6 +668,7 @@ namespace GestionPharmacie
             Controls.Add(panelStats);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(4, 4, 4, 4);
             Name = "Accueil";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Accueil - Gestion de la Pharmacie";

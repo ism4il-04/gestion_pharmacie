@@ -105,5 +105,19 @@ namespace GestionPharmacie
             f.Show();
             this.Hide();
         }
+
+        private void ajouterF_Click(object sender, EventArgs e)
+        {
+            AjouterFournisseur popup = new AjouterFournisseur();
+
+            // Open as modal dialog → stops everything until the popup is closed
+            var result = popup.ShowDialog();
+
+            // If fournisseur successfully added → reload combo box
+            if (result == DialogResult.OK)
+            {
+                LoadComboBoxes();
+            }
+        }
     }
 }

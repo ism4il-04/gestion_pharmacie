@@ -136,12 +136,19 @@ namespace GestionPharmacie
         {
             // Optional: Handle cell click
         }
-
         private void ajouterClientToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
+          
             AjouterClient ajouterClientForm = new AjouterClient();
-            ajouterClientForm.Show();
+
+            // Open as modal dialog → stops everything until the popup is closed
+            var result = ajouterClientForm.ShowDialog();
+
+            // If fournisseur successfully added → reload combo box
+            if (result == DialogResult.OK)
+            {
+                this.RefreshData();
+            }
         }
 
         private void modifierClientToolStripMenuItem_Click(object sender, EventArgs e)

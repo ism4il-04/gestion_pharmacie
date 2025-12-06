@@ -22,7 +22,7 @@ namespace GestionPharmacie
             LoadCommandes();
             LoadStatistics();
             InitializeContextMenu();
-            
+
             this.Load += AccueilCommande_Load;
         }
 
@@ -35,7 +35,7 @@ namespace GestionPharmacie
         {
             // Set form properties
             this.BackColor = Color.FromArgb(240, 244, 248);
-            
+
             // Style the DataGridView
             guna2DataGridView1.BorderStyle = BorderStyle.None;
             guna2DataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
@@ -65,20 +65,19 @@ namespace GestionPharmacie
             {
                 SqlConnection connection = Connexion.connecter();
                 string sql = @"
-                    SELECT 
-                        c.id AS 'ID',
-                        cl.nom_complet AS 'Client',
-                        u.nom + ' ' + u.prenom AS 'Utilisateur',
-                        c.date_commande AS 'Date',
-                        c.statut AS 'Statut',
-                        c.total AS 'Total (DH)',
-                        COUNT(cd.id) AS 'Nb Articles'
-                    FROM commande c
-                    INNER JOIN client cl ON c.client_id = cl.id
-                    INNER JOIN utilisateur u ON c.utilisateur_id = u.id
-                    LEFT JOIN commande_details cd ON c.id = cd.commande_id
-                    GROUP BY c.id, cl.nom_complet, u.nom, u.prenom, c.date_commande, c.statut, c.total
-                    ORDER BY c.date_commande DESC";
+                   SELECT c.id AS 'ID',
+                            ISNULL(cl.nom_complet, 'Client anonyme') AS 'Client',
+                            u.nom + ' ' + u.prenom AS 'Utilisateur',
+                            c.date_commande AS 'Date',
+                            c.statut AS 'Statut',
+                            c.total AS 'Total (DH)',
+                            COUNT(cd.id) AS 'Nb Articles'
+                        FROM commande c
+                        LEFT JOIN client cl ON c.client_id = cl.id
+                        INNER JOIN utilisateur u ON c.utilisateur_id = u.id
+                        LEFT JOIN commande_details cd ON c.id = cd.commande_id
+                        GROUP BY c.id, cl.nom_complet, u.nom, u.prenom, c.date_commande, c.statut, c.total
+                        ORDER BY c.date_commande DESC ";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, connection);
                 commandesTable = new DataTable();
@@ -149,7 +148,7 @@ namespace GestionPharmacie
             try
             {
                 SqlConnection connection = Connexion.connecter();
-                
+
                 // Get total orders count
                 string sqlCount = "SELECT COUNT(*) FROM commande";
                 SqlCommand cmdCount = new SqlCommand(sqlCount, connection);
@@ -200,9 +199,15 @@ namespace GestionPharmacie
 
         private void ajouterUneCommandeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AjouterCommande f = new AjouterCommande();
-            f.Show();
-            this.Hide();
+            AjouterCommande c = new AjouterCommande();
+            // Open as modal dialog → stops everything until the popup is closed
+            var result = c.ShowDialog();
+
+            // If fournisseur successfully added → reload combo box
+            if (result == DialogResult.OK)
+            {
+                this.RefreshData();
+            }
         }
 
         private void medicamentsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -229,14 +234,15 @@ namespace GestionPharmacie
                 RefreshData(); // Refresh to show updated invoice status
             }
         }
-        
+
         // Initialize context menu for invoice generation
         private void InitializeContextMenu()
         {
             ContextMenuStrip contextMenu = new ContextMenuStrip();
-            
+
             ToolStripMenuItem genererFacture = new ToolStripMenuItem("📄 Générer Facture");
-            genererFacture.Click += (s, e) => {
+            genererFacture.Click += (s, e) =>
+            {
                 if (guna2DataGridView1.SelectedRows.Count > 0)
                 {
                     int commandeId = Convert.ToInt32(guna2DataGridView1.SelectedRows[0].Cells["ID"].Value);
@@ -247,7 +253,8 @@ namespace GestionPharmacie
             };
 
             ToolStripMenuItem viewDetails = new ToolStripMenuItem("👁️ Voir les détails");
-            viewDetails.Click += (s, e) => {
+            viewDetails.Click += (s, e) =>
+            {
                 if (guna2DataGridView1.SelectedRows.Count > 0)
                 {
                     int commandeId = Convert.ToInt32(guna2DataGridView1.SelectedRows[0].Cells["ID"].Value);
@@ -257,55 +264,55 @@ namespace GestionPharmacie
 
             contextMenu.Items.Add(genererFacture);
             contextMenu.Items.Add(viewDetails);
-            
+
             guna2DataGridView1.ContextMenuStrip = contextMenu;
         }
-        
+
         // Search functionality
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             ApplyFilters();
         }
-        
+
         // Status filter
         private void comboStatusFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             ApplyFilters();
         }
-        
+
         // Apply all filters
         private void ApplyFilters()
         {
             if (commandesTable == null) return;
-            
+
             try
             {
                 string filterExpression = "";
                 List<string> filters = new List<string>();
-                
+
                 // Search filter
                 if (!string.IsNullOrWhiteSpace(txtSearch.Text))
                 {
                     filters.Add($"Client LIKE '%{txtSearch.Text}%'");
                 }
-                
+
                 // Status filter
                 if (comboStatusFilter.SelectedIndex > 0) // 0 is "Tous les statuts"
                 {
                     string selectedStatus = comboStatusFilter.SelectedItem.ToString();
                     filters.Add($"Statut = '{selectedStatus}'");
                 }
-                
+
                 // Combine filters
                 if (filters.Count > 0)
                 {
                     filterExpression = string.Join(" AND ", filters);
                 }
-                
+
                 // Apply filter
                 DataView dv = commandesTable.DefaultView;
                 dv.RowFilter = filterExpression;
-                
+
                 // Update status column styling after filter
                 StyleStatusColumn();
             }
@@ -314,17 +321,17 @@ namespace GestionPharmacie
                 Console.WriteLine("Erreur lors de l'application des filtres: " + ex.Message);
             }
         }
-        
+
         // Refresh button
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             // Reset filters
             txtSearch.Clear();
             comboStatusFilter.SelectedIndex = 0;
-            
+
             // Reload data
             RefreshData();
-            
+
             MessageBox.Show("Données actualisées!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }

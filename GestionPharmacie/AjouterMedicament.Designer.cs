@@ -1,4 +1,5 @@
-﻿namespace GestionPharmacie
+﻿
+namespace GestionPharmacie
 {
     partial class AjouterMedicament
     {
@@ -77,9 +78,10 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Stencil", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(460, 46);
+            label1.Location = new Point(575, 58);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(384, 33);
+            label1.Size = new Size(446, 39);
             label1.TabIndex = 0;
             label1.Text = "Ajouter un medicament";
             // 
@@ -92,35 +94,37 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { medicamentsToolStripMenuItem, clientsToolStripMenuItem, commandesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1379, 33);
+            menuStrip1.Padding = new Padding(8, 2, 0, 2);
+            menuStrip1.Size = new Size(1724, 38);
             menuStrip1.TabIndex = 1;
             // 
             // medicamentsToolStripMenuItem
             // 
             medicamentsToolStripMenuItem.Name = "medicamentsToolStripMenuItem";
-            medicamentsToolStripMenuItem.Size = new Size(144, 29);
+            medicamentsToolStripMenuItem.Size = new Size(169, 34);
             medicamentsToolStripMenuItem.Text = "Medicaments";
             medicamentsToolStripMenuItem.Click += medicamentsToolStripMenuItem_Click;
             // 
             // clientsToolStripMenuItem
             // 
             clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            clientsToolStripMenuItem.Size = new Size(85, 29);
+            clientsToolStripMenuItem.Size = new Size(99, 34);
             clientsToolStripMenuItem.Text = "Clients";
             // 
             // commandesToolStripMenuItem
             // 
             commandesToolStripMenuItem.Name = "commandesToolStripMenuItem";
-            commandesToolStripMenuItem.Size = new Size(136, 29);
+            commandesToolStripMenuItem.Size = new Size(157, 34);
             commandesToolStripMenuItem.Text = "Commandes";
             // 
             // lblTotalMedicamentsTitle
             // 
             lblTotalMedicamentsTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTotalMedicamentsTitle.ForeColor = Color.Black;
-            lblTotalMedicamentsTitle.Location = new Point(84, 129);
+            lblTotalMedicamentsTitle.Location = new Point(105, 161);
+            lblTotalMedicamentsTitle.Margin = new Padding(4, 0, 4, 0);
             lblTotalMedicamentsTitle.Name = "lblTotalMedicamentsTitle";
-            lblTotalMedicamentsTitle.Size = new Size(220, 25);
+            lblTotalMedicamentsTitle.Size = new Size(275, 31);
             lblTotalMedicamentsTitle.TabIndex = 2;
             lblTotalMedicamentsTitle.Text = "Nom";
             lblTotalMedicamentsTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -129,9 +133,10 @@
             // 
             label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(84, 187);
+            label2.Location = new Point(105, 234);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(220, 30);
+            label2.Size = new Size(275, 38);
             label2.TabIndex = 3;
             label2.Text = "Référence";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -140,9 +145,10 @@
             // 
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(84, 246);
+            label3.Location = new Point(105, 308);
+            label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new Size(220, 30);
+            label3.Size = new Size(275, 38);
             label3.TabIndex = 4;
             label3.Text = "Description";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -151,9 +157,10 @@
             // 
             label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(84, 299);
+            label4.Location = new Point(105, 374);
+            label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(220, 30);
+            label4.Size = new Size(275, 38);
             label4.TabIndex = 5;
             label4.Text = "Dosage";
             label4.TextAlign = ContentAlignment.MiddleCenter;
@@ -162,9 +169,10 @@
             // 
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(84, 353);
+            label5.Location = new Point(105, 441);
+            label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(220, 30);
+            label5.Size = new Size(275, 38);
             label5.TabIndex = 6;
             label5.Text = "Categorie";
             label5.TextAlign = ContentAlignment.MiddleCenter;
@@ -173,9 +181,10 @@
             // 
             label6.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label6.ForeColor = Color.Black;
-            label6.Location = new Point(84, 414);
+            label6.Location = new Point(105, 518);
+            label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(220, 30);
+            label6.Size = new Size(275, 38);
             label6.TabIndex = 7;
             label6.Text = "Prix d'achat";
             label6.TextAlign = ContentAlignment.MiddleCenter;
@@ -184,9 +193,10 @@
             // 
             label7.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(84, 477);
+            label7.Location = new Point(105, 596);
+            label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(220, 30);
+            label7.Size = new Size(275, 38);
             label7.TabIndex = 8;
             label7.Text = "Prix de vente";
             label7.TextAlign = ContentAlignment.MiddleCenter;
@@ -198,14 +208,15 @@
             txtNom.CustomizableEdges = customizableEdges1;
             txtNom.DefaultText = "";
             txtNom.Font = new Font("Segoe UI", 10F);
-            txtNom.Location = new Point(460, 129);
-            txtNom.Margin = new Padding(3, 4, 3, 4);
+            txtNom.Location = new Point(575, 161);
+            txtNom.Margin = new Padding(4, 5, 4, 5);
             txtNom.Name = "txtNom";
             txtNom.PlaceholderText = "Nom de médicament";
             txtNom.SelectedText = "";
             txtNom.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            txtNom.Size = new Size(400, 30);
+            txtNom.Size = new Size(500, 38);
             txtNom.TabIndex = 9;
+            txtNom.TextChanged += txtNom_TextChanged;
             // 
             // txtRef
             // 
@@ -213,13 +224,13 @@
             txtRef.CustomizableEdges = customizableEdges3;
             txtRef.DefaultText = "";
             txtRef.Font = new Font("Segoe UI", 10F);
-            txtRef.Location = new Point(460, 187);
-            txtRef.Margin = new Padding(3, 4, 3, 4);
+            txtRef.Location = new Point(575, 234);
+            txtRef.Margin = new Padding(4, 5, 4, 5);
             txtRef.Name = "txtRef";
             txtRef.PlaceholderText = "Réference (DP1452)";
             txtRef.SelectedText = "";
             txtRef.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            txtRef.Size = new Size(400, 30);
+            txtRef.Size = new Size(500, 38);
             txtRef.TabIndex = 10;
             txtRef.TextChanged += guna2TextBox1_TextChanged;
             // 
@@ -229,13 +240,13 @@
             txtDescription.CustomizableEdges = customizableEdges5;
             txtDescription.DefaultText = "";
             txtDescription.Font = new Font("Segoe UI", 10F);
-            txtDescription.Location = new Point(460, 246);
-            txtDescription.Margin = new Padding(3, 4, 3, 4);
+            txtDescription.Location = new Point(575, 308);
+            txtDescription.Margin = new Padding(4, 5, 4, 5);
             txtDescription.Name = "txtDescription";
             txtDescription.PlaceholderText = "Description";
             txtDescription.SelectedText = "";
             txtDescription.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            txtDescription.Size = new Size(400, 30);
+            txtDescription.Size = new Size(500, 38);
             txtDescription.TabIndex = 11;
             // 
             // txtDosage
@@ -244,13 +255,13 @@
             txtDosage.CustomizableEdges = customizableEdges7;
             txtDosage.DefaultText = "";
             txtDosage.Font = new Font("Segoe UI", 10F);
-            txtDosage.Location = new Point(460, 299);
-            txtDosage.Margin = new Padding(3, 4, 3, 4);
+            txtDosage.Location = new Point(575, 374);
+            txtDosage.Margin = new Padding(4, 5, 4, 5);
             txtDosage.Name = "txtDosage";
             txtDosage.PlaceholderText = "Dosage (500mg ...)";
             txtDosage.SelectedText = "";
             txtDosage.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            txtDosage.Size = new Size(400, 30);
+            txtDosage.Size = new Size(500, 38);
             txtDosage.TabIndex = 12;
             // 
             // txtCategorie
@@ -259,13 +270,13 @@
             txtCategorie.CustomizableEdges = customizableEdges9;
             txtCategorie.DefaultText = "";
             txtCategorie.Font = new Font("Segoe UI", 10F);
-            txtCategorie.Location = new Point(460, 353);
-            txtCategorie.Margin = new Padding(3, 4, 3, 4);
+            txtCategorie.Location = new Point(575, 441);
+            txtCategorie.Margin = new Padding(4, 5, 4, 5);
             txtCategorie.Name = "txtCategorie";
             txtCategorie.PlaceholderText = "Categorie de medicament";
             txtCategorie.SelectedText = "";
             txtCategorie.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            txtCategorie.Size = new Size(400, 30);
+            txtCategorie.Size = new Size(500, 38);
             txtCategorie.TabIndex = 13;
             // 
             // txtAchat
@@ -274,13 +285,13 @@
             txtAchat.CustomizableEdges = customizableEdges11;
             txtAchat.DefaultText = "";
             txtAchat.Font = new Font("Segoe UI", 10F);
-            txtAchat.Location = new Point(460, 414);
-            txtAchat.Margin = new Padding(3, 4, 3, 4);
+            txtAchat.Location = new Point(575, 518);
+            txtAchat.Margin = new Padding(4, 5, 4, 5);
             txtAchat.Name = "txtAchat";
             txtAchat.PlaceholderText = "prix d'achat en DH";
             txtAchat.SelectedText = "";
             txtAchat.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            txtAchat.Size = new Size(400, 30);
+            txtAchat.Size = new Size(500, 38);
             txtAchat.TabIndex = 14;
             // 
             // txtVente
@@ -289,13 +300,13 @@
             txtVente.CustomizableEdges = customizableEdges13;
             txtVente.DefaultText = "";
             txtVente.Font = new Font("Segoe UI", 10F);
-            txtVente.Location = new Point(460, 477);
-            txtVente.Margin = new Padding(3, 4, 3, 4);
+            txtVente.Location = new Point(575, 596);
+            txtVente.Margin = new Padding(4, 5, 4, 5);
             txtVente.Name = "txtVente";
             txtVente.PlaceholderText = "prix de vente en DH";
             txtVente.SelectedText = "";
             txtVente.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            txtVente.Size = new Size(400, 30);
+            txtVente.Size = new Size(500, 38);
             txtVente.TabIndex = 15;
             // 
             // btnAjouter
@@ -305,10 +316,11 @@
             btnAjouter.FillColor = Color.SeaGreen;
             btnAjouter.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnAjouter.ForeColor = Color.White;
-            btnAjouter.Location = new Point(549, 564);
+            btnAjouter.Location = new Point(686, 705);
+            btnAjouter.Margin = new Padding(4, 4, 4, 4);
             btnAjouter.Name = "btnAjouter";
             btnAjouter.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            btnAjouter.Size = new Size(140, 45);
+            btnAjouter.Size = new Size(175, 56);
             btnAjouter.TabIndex = 16;
             btnAjouter.Text = "➕ Ajouter";
             btnAjouter.Click += btnAjouter_Click;
@@ -320,10 +332,11 @@
             btnRetour.FillColor = Color.Goldenrod;
             btnRetour.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnRetour.ForeColor = Color.White;
-            btnRetour.Location = new Point(737, 564);
+            btnRetour.Location = new Point(921, 705);
+            btnRetour.Margin = new Padding(4, 4, 4, 4);
             btnRetour.Name = "btnRetour";
             btnRetour.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            btnRetour.Size = new Size(161, 45);
+            btnRetour.Size = new Size(201, 56);
             btnRetour.TabIndex = 17;
             btnRetour.Text = "↩  Retour";
             btnRetour.Click += btnModifier_Click;
@@ -335,19 +348,20 @@
             btnReinitialiser.FillColor = Color.Firebrick;
             btnReinitialiser.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnReinitialiser.ForeColor = Color.White;
-            btnReinitialiser.Location = new Point(332, 564);
+            btnReinitialiser.Location = new Point(415, 705);
+            btnReinitialiser.Margin = new Padding(4, 4, 4, 4);
             btnReinitialiser.Name = "btnReinitialiser";
             btnReinitialiser.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            btnReinitialiser.Size = new Size(171, 45);
+            btnReinitialiser.Size = new Size(214, 56);
             btnReinitialiser.TabIndex = 18;
             btnReinitialiser.Text = "🗑️ Réinitialiser";
             btnReinitialiser.Click += btnReinitialiser_Click;
             // 
             // AjouterMedicament
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1379, 658);
+            ClientSize = new Size(1724, 822);
             Controls.Add(btnReinitialiser);
             Controls.Add(btnRetour);
             Controls.Add(btnAjouter);
@@ -367,12 +381,18 @@
             Controls.Add(lblTotalMedicamentsTitle);
             Controls.Add(menuStrip1);
             Controls.Add(label1);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "AjouterMedicament";
             Text = "Form1";
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
+        }
+
+        private void txtNom_TextChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

@@ -8,7 +8,7 @@ namespace GestionPharmacie
     public class Commande
     {
         public int Id { get; set; }
-        public int ClientId { get; set; }
+        public int? ClientId { get; set; }
         public int UtilisateurId { get; set; }
         public DateTime DateCommande { get; set; }
         public string Statut { get; set; } = "en_cours";
@@ -35,7 +35,10 @@ namespace GestionPharmacie
                 {
                     DateCommande = DateTime.Now;
 
-                    cmd.Parameters.AddWithValue("@ClientId", ClientId);
+                    if (ClientId == null)
+                        cmd.Parameters.AddWithValue("@ClientId", DBNull.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@ClientId", ClientId);
                     cmd.Parameters.AddWithValue("@UtilisateurId", UtilisateurId);
                     cmd.Parameters.AddWithValue("@DateCommande", DateCommande);
                     cmd.Parameters.AddWithValue("@Statut", Statut);

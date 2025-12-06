@@ -42,6 +42,9 @@ namespace GestionPharmacie
                     txtTele.Clear();
                     txtAdresse.Clear();
                     txtEmail.Clear();
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+
 
                 }
                 else
@@ -50,5 +53,20 @@ namespace GestionPharmacie
                 }
             }
         }
+
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+
+        }
+
+        private void btnReinitialiser_Click(object sender, EventArgs e)
+        {
+            txtNom.Clear();
+            txtTele.Clear();
+            txtAdresse.Clear();
+            txtEmail.Clear();
         }
     }
+}

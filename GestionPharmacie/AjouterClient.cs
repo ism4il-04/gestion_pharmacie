@@ -24,9 +24,8 @@ namespace GestionPharmacie
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            AccueilClient f = new AccueilClient();
-            f.Show();
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
         private void btnReinitialiser_Click(object sender, EventArgs e)
         {
@@ -59,6 +58,8 @@ namespace GestionPharmacie
                     txtTele.Clear();
                     txtAdresse.Clear();
                     txtEmail.Clear();
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
 
                 }
                 else

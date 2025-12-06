@@ -42,10 +42,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            menuStrip1 = new MenuStrip();
-            medicamentsToolStripMenuItem = new ToolStripMenuItem();
-            clientsToolStripMenuItem = new ToolStripMenuItem();
-            commandesToolStripMenuItem = new ToolStripMenuItem();
             btnReinitialiser = new Guna.UI2.WinForms.Guna2Button();
             btnRetour = new Guna.UI2.WinForms.Guna2Button();
             btnAjouter = new Guna.UI2.WinForms.Guna2Button();
@@ -58,39 +54,7 @@
             label2 = new Label();
             lblTotalMedicamentsTitle = new Label();
             label1 = new Label();
-            menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.BackColor = Color.FromArgb(0, 122, 204);
-            menuStrip1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            menuStrip1.ForeColor = Color.White;
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { medicamentsToolStripMenuItem, clientsToolStripMenuItem, commandesToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(8, 2, 0, 2);
-            menuStrip1.Size = new Size(1000, 38);
-            menuStrip1.TabIndex = 37;
-            // 
-            // medicamentsToolStripMenuItem
-            // 
-            medicamentsToolStripMenuItem.Name = "medicamentsToolStripMenuItem";
-            medicamentsToolStripMenuItem.Size = new Size(169, 34);
-            medicamentsToolStripMenuItem.Text = "Medicaments";
-            // 
-            // clientsToolStripMenuItem
-            // 
-            clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            clientsToolStripMenuItem.Size = new Size(99, 34);
-            clientsToolStripMenuItem.Text = "Clients";
-            // 
-            // commandesToolStripMenuItem
-            // 
-            commandesToolStripMenuItem.Name = "commandesToolStripMenuItem";
-            commandesToolStripMenuItem.Size = new Size(157, 34);
-            commandesToolStripMenuItem.Text = "Commandes";
             // 
             // btnReinitialiser
             // 
@@ -106,6 +70,7 @@
             btnReinitialiser.Size = new Size(214, 56);
             btnReinitialiser.TabIndex = 49;
             btnReinitialiser.Text = "🗑️ Réinitialiser";
+            btnReinitialiser.Click += btnReinitialiser_Click;
             // 
             // btnRetour
             // 
@@ -120,7 +85,8 @@
             btnRetour.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnRetour.Size = new Size(201, 56);
             btnRetour.TabIndex = 48;
-            btnRetour.Text = "↩  Retour";
+            btnRetour.Text = "↩ Cancel";
+            btnRetour.Click += btnRetour_Click;
             // 
             // btnAjouter
             // 
@@ -262,7 +228,6 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1000, 750);
-            Controls.Add(menuStrip1);
             Controls.Add(btnReinitialiser);
             Controls.Add(btnRetour);
             Controls.Add(btnAjouter);
@@ -277,18 +242,11 @@
             Controls.Add(label1);
             Name = "AjouterFournisseur";
             Text = "AjouterFournisseur";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem medicamentsToolStripMenuItem;
-        private ToolStripMenuItem clientsToolStripMenuItem;
-        private ToolStripMenuItem commandesToolStripMenuItem;
         private Guna.UI2.WinForms.Guna2Button btnReinitialiser;
         private Guna.UI2.WinForms.Guna2Button btnRetour;
         private Guna.UI2.WinForms.Guna2Button btnAjouter;

@@ -22,7 +22,7 @@ namespace GestionPharmacie
             InitializeGrid();
             LoadClients();
             LoadMedicaments();
-            
+
             // Wire up event handlers
             guna2Button1.Click += btnAjouterMedicament_Click;
             btnAjouter.Click += btnValider_Click;
@@ -61,13 +61,19 @@ namespace GestionPharmacie
                 Client client = new Client();
                 DataTable clientsTable = client.Lister();
 
+                DataRow anonymousRow = clientsTable.NewRow();
+                anonymousRow["id"] = 0;       // 0 = ID spécial
+                anonymousRow["Nom"] = "Client anonyme";
+                clientsTable.Rows.InsertAt(anonymousRow, 0);
+
+
                 comboClient.DataSource = clientsTable;
                 comboClient.DisplayMember = "Nom";
                 comboClient.ValueMember = "id";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors du chargement des clients: " + ex.Message, 
+                MessageBox.Show("Erreur lors du chargement des clients: " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -85,7 +91,7 @@ namespace GestionPharmacie
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors du chargement des médicaments: " + ex.Message, 
+                MessageBox.Show("Erreur lors du chargement des médicaments: " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -97,25 +103,25 @@ namespace GestionPharmacie
                 // Validate inputs
                 if (comboMedicament.SelectedValue == null)
                 {
-                    MessageBox.Show("Veuillez sélectionner un médicament.", 
+                    MessageBox.Show("Veuillez sélectionner un médicament.",
                         "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (string.IsNullOrWhiteSpace(txtQte.Text) || !int.TryParse(txtQte.Text, out int quantite) || quantite <= 0)
                 {
-                    MessageBox.Show("Veuillez entrer une quantité valide.", 
+                    MessageBox.Show("Veuillez entrer une quantité valide.",
                         "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 int medicamentId = Convert.ToInt32(comboMedicament.SelectedValue);
-                
+
                 // Get medicament details
                 Medicament medicament = new Medicament();
                 if (!medicament.ChargerParId(medicamentId))
                 {
-                    MessageBox.Show("Erreur lors du chargement du médicament.", 
+                    MessageBox.Show("Erreur lors du chargement du médicament.",
                         "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -125,7 +131,7 @@ namespace GestionPharmacie
                 {
                     if (Convert.ToInt32(row["MedicamentId"]) == medicamentId)
                     {
-                        MessageBox.Show("Ce médicament est déjà dans la commande. Modifiez la quantité directement dans le tableau.", 
+                        MessageBox.Show("Ce médicament est déjà dans la commande. Modifiez la quantité directement dans le tableau.",
                             "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         return;
                     }
@@ -135,7 +141,7 @@ namespace GestionPharmacie
                 int stockDisponible = GetStockDisponible(medicamentId);
                 if (stockDisponible < quantite)
                 {
-                    MessageBox.Show($"Stock insuffisant! Disponible: {stockDisponible}", 
+                    MessageBox.Show($"Stock insuffisant! Disponible: {stockDisponible}",
                         "Stock insuffisant", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -156,12 +162,12 @@ namespace GestionPharmacie
                 txtQte.Clear();
                 comboMedicament.SelectedIndex = -1;
 
-                MessageBox.Show("Médicament ajouté à la commande!", 
+                MessageBox.Show("Médicament ajouté à la commande!",
                     "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de l'ajout du médicament: " + ex.Message, 
+                MessageBox.Show("Erreur lors de l'ajout du médicament: " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -199,18 +205,17 @@ namespace GestionPharmacie
         {
             try
             {
-                // Validate client selection
-                if (comboClient.SelectedValue == null)
-                {
-                    MessageBox.Show("Veuillez sélectionner un client.", 
-                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                int clientId = Convert.ToInt32(comboClient.SelectedValue);
 
+                // 0 = client anonyme (aucune validation nécessaire)
+                if (clientId == 0)
+                {
+                    clientId = -1; // on met un marqueur temporaire
+                }
                 // Validate that there are items in the order
                 if (commandeDetailsTable.Rows.Count == 0)
                 {
-                    MessageBox.Show("Veuillez ajouter au moins un médicament à la commande.", 
+                    MessageBox.Show("Veuillez ajouter au moins un médicament à la commande.",
                         "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -225,10 +230,11 @@ namespace GestionPharmacie
                 // Create the commande object
                 Commande commande = new Commande
                 {
-                    ClientId = Convert.ToInt32(comboClient.SelectedValue),
+                    ClientId = (clientId == -1 ? (int?)null : clientId),
                     UtilisateurId = currentUserId,
                     Total = total
                 };
+
 
                 // Add details to the commande
                 foreach (DataRow row in commandeDetailsTable.Rows)
@@ -247,21 +253,24 @@ namespace GestionPharmacie
 
                 if (success)
                 {
-                    MessageBox.Show($"Commande créée avec succès!\nTotal: {total:C2}", 
+                    DialogResult result = MessageBox.Show($"Commande créée avec succès!\nTotal: {total:C2}",
                         "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    // Reset the form
-                    ResetForm();
+
+                    if (result == DialogResult.OK)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Erreur lors de la création de la commande. Vérifiez le stock disponible.", 
+                    MessageBox.Show("Erreur lors de la création de la commande. Vérifiez le stock disponible.",
                         "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de la validation de la commande: " + ex.Message, 
+                MessageBox.Show("Erreur lors de la validation de la commande: " + ex.Message,
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -269,9 +278,9 @@ namespace GestionPharmacie
         private void btnReinitialiser_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
-                "Êtes-vous sûr de vouloir réinitialiser la commande?", 
-                "Confirmation", 
-                MessageBoxButtons.YesNo, 
+                "Êtes-vous sûr de vouloir réinitialiser la commande?",
+                "Confirmation",
+                MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
@@ -279,7 +288,6 @@ namespace GestionPharmacie
                 ResetForm();
             }
         }
-
         private void ResetForm()
         {
             commandeDetailsTable.Clear();
@@ -290,8 +298,7 @@ namespace GestionPharmacie
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            AccueilCommande f = new AccueilCommande();
-            f.Show();
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -299,7 +306,7 @@ namespace GestionPharmacie
         {
             AjouterClient f = new AjouterClient();
             f.ShowDialog();
-            
+
             // Reload clients after adding a new one
             LoadClients();
         }

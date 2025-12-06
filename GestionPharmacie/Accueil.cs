@@ -14,11 +14,44 @@ namespace GestionPharmacie
         private int currentPage = 1;
         private int pageSize = 20;
         private int totalRecords = 0;
-
+        private ListBox listBoxFournisseurs;
+        // In the constructor, modify the listBoxFournisseurs initialization:
         public Accueil()
         {
             InitializeComponent();
             sqlConnection = Connexion.connecter();
+
+            // Create and configure the suppliers listbox
+            listBoxFournisseurs = new ListBox
+            {
+                Location = new Point(1350, 532), // Position it below the alerts panel
+                Size = new Size(624, 300),
+                BackColor = Color.White,
+                Font = new Font("Segoe UI", 9F),
+                ForeColor = Color.FromArgb(0, 122, 204),
+                Visible = false // Start hidden
+            };
+
+            // Add a title label for the suppliers section
+            Label lblFournisseursTitle = new Label
+            {
+                Location = new Point(1350, 532),
+                Size = new Size(624, 40),
+                BackColor = Color.FromArgb(46, 204, 113),
+                Font = new Font("Segoe UI", 11F, FontStyle.Bold),
+                ForeColor = Color.White,
+                Text = "📞 Fournisseurs Disponibles",
+                TextAlign = ContentAlignment.MiddleCenter,
+                Visible = false,
+                Name = "lblFournisseursTitle"
+            };
+
+            this.Controls.Add(lblFournisseursTitle);
+            listBoxFournisseurs.Location = new Point(1350, 572);
+            this.Controls.Add(listBoxFournisseurs);
+
+            // Lier l'événement de sélection de l'alerte
+            listBoxAlertes.MouseClick += ListBoxAlertes_MouseClick;
         }
 
         private void Accueil_Load(object sender, EventArgs e)
@@ -29,6 +62,7 @@ namespace GestionPharmacie
             ChargerGraphiqueCategories();
             ConfigurerDataGridView();
         }
+    
 
         private void ConfigurerDataGridView()
         {
@@ -68,6 +102,63 @@ namespace GestionPharmacie
                         e.CellStyle.ForeColor = Color.DarkGreen;
                     }
                 }
+            }
+        }
+
+        private void ChargerFournisseursPourMedicament(string medicamentNom)
+        {
+            try
+            {
+                string sql = @"SELECT DISTINCT f.nom, f.telephone, f.email
+                        FROM lot l
+                        INNER JOIN fournisseur f ON l.fournisseur_id = f.id
+                        INNER JOIN medicament m ON l.medicament_id = m.id
+                        WHERE m.nom = @nom AND l.quantite_stock > 0";
+
+                SqlCommand cmd = new SqlCommand(sql, sqlConnection);
+                cmd.Parameters.AddWithValue("@nom", medicamentNom);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count == 0)
+                {
+                    MessageBox.Show($"Aucun fournisseur trouvé pour: {medicamentNom}",
+                                  "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    string message = $"Fournisseurs disponibles pour '{medicamentNom}':\n\n";
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        message += $"📦 {row["nom"]}\n";
+                        message += $"   📞 Tel: {row["telephone"]}\n";
+                        if (row["email"] != DBNull.Value && !string.IsNullOrEmpty(row["email"].ToString()))
+                        {
+                            message += $"   📧 Email: {row["email"]}\n";
+                        }
+                        message += "\n";
+                    }
+
+                    MessageBox.Show(message, "Fournisseurs Disponibles",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors du chargement des fournisseurs : " + ex.Message,
+                               "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void ListBoxAlertes_MouseClick(object sender, MouseEventArgs e)
+        {
+            int index = listBoxAlertes.IndexFromPoint(e.Location);
+            if (index != ListBox.NoMatches)
+            {
+                string selectedAlert = listBoxAlertes.Items[index].ToString();
+                string medicamentNom = selectedAlert.Split('(')[0].Trim();
+                ChargerFournisseursPourMedicament(medicamentNom);
             }
         }
 
@@ -511,5 +602,7 @@ namespace GestionPharmacie
             f.Show();
             this.Hide();
         }
+
+       
     }
 }
