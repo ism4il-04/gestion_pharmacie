@@ -51,5 +51,43 @@ namespace GestionPharmacie
                     _connection.Close();
             }
         }
+
+        public static DataTable ListerParCommande(int commandeId)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = Connexion.connecter();
+
+            try
+            {
+                string sql = @"SELECT cd.id, cd.medicament_id, m.nom AS medicament_nom, 
+                              cd.quantite, cd.prix_unitaire, 
+                              (cd.quantite * cd.prix_unitaire) AS subtotal
+                              FROM commande_details cd
+                              INNER JOIN medicament m ON cd.medicament_id = m.id
+                              WHERE cd.commande_id = @CommandeId";
+
+                using (SqlCommand cmd = new SqlCommand(sql, connection))
+                {
+                    cmd.Parameters.AddWithValue("@CommandeId", commandeId);
+                    connection.Open();
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erreur ListerParCommande: " + ex.Message);
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
+
+            return dt;
+        }
     }
 }

@@ -392,7 +392,6 @@ namespace GestionPharmacie
 
         private void txtNom_TextChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         #endregion

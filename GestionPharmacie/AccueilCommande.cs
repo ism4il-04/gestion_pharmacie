@@ -210,6 +210,25 @@ namespace GestionPharmacie
             }
         }
 
+        private void modifierCommandeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (guna2DataGridView1.SelectedRows.Count > 0)
+            {
+                int commandeId = Convert.ToInt32(guna2DataGridView1.SelectedRows[0].Cells["ID"].Value);
+                ModifierCommande modifierForm = new ModifierCommande(commandeId);
+                var result = modifierForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    this.RefreshData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une commande à modifier.",
+                    "Sélection requise", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void medicamentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Accueil f = new Accueil();
@@ -240,6 +259,21 @@ namespace GestionPharmacie
         {
             ContextMenuStrip contextMenu = new ContextMenuStrip();
 
+            ToolStripMenuItem modifierCommande = new ToolStripMenuItem("✏️ Modifier Commande");
+            modifierCommande.Click += (s, e) =>
+            {
+                if (guna2DataGridView1.SelectedRows.Count > 0)
+                {
+                    int commandeId = Convert.ToInt32(guna2DataGridView1.SelectedRows[0].Cells["ID"].Value);
+                    ModifierCommande modifierForm = new ModifierCommande(commandeId);
+                    var result = modifierForm.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        RefreshData();
+                    }
+                }
+            };
+
             ToolStripMenuItem genererFacture = new ToolStripMenuItem("📄 Générer Facture");
             genererFacture.Click += (s, e) =>
             {
@@ -258,10 +292,11 @@ namespace GestionPharmacie
                 if (guna2DataGridView1.SelectedRows.Count > 0)
                 {
                     int commandeId = Convert.ToInt32(guna2DataGridView1.SelectedRows[0].Cells["ID"].Value);
-                    MessageBox.Show($"Détails de la commande #{commandeId}\n(Fonctionnalité à implémenter)");
+                    MessageBox.Show($"Détails de la commande #{commandeId}\\n(Fonctionnalité à implémenter)");
                 }
             };
 
+            contextMenu.Items.Add(modifierCommande);
             contextMenu.Items.Add(genererFacture);
             contextMenu.Items.Add(viewDetails);
 

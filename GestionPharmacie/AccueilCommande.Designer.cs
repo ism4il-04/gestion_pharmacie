@@ -109,6 +109,7 @@
             modifierCommandeToolStripMenuItem.Name = "modifierCommandeToolStripMenuItem";
             modifierCommandeToolStripMenuItem.Size = new Size(358, 38);
             modifierCommandeToolStripMenuItem.Text = "Modifier commande";
+            modifierCommandeToolStripMenuItem.Click += modifierCommandeToolStripMenuItem_Click;
             // 
             // panelTotalOrders
             // 
