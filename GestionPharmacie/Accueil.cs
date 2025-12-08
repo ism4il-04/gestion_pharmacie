@@ -1,9 +1,10 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Data;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace GestionPharmacie
 {
@@ -52,6 +53,8 @@ namespace GestionPharmacie
 
             // Lier l'événement de sélection de l'alerte
             listBoxAlertes.MouseClick += ListBoxAlertes_MouseClick;
+            listBoxCategories.MouseClick += ListBoxCategories_MouseClick;
+
         }
 
         private void Accueil_Load(object sender, EventArgs e)
@@ -62,7 +65,21 @@ namespace GestionPharmacie
             ChargerGraphiqueCategories();
             ConfigurerDataGridView();
         }
-    
+
+        private void ListBoxCategories_MouseClick(object sender, MouseEventArgs e)
+        {
+            int index = listBoxCategories.IndexFromPoint(e.Location);
+
+            if (index != ListBox.NoMatches)
+            {
+                string selectedItem = listBoxCategories.Items[index].ToString();
+
+                // Extract medicine name (text before '(' )
+                string medicamentNom = selectedItem.Split('(')[0].Trim();
+
+                ChargerFournisseursPourMedicament(medicamentNom);
+            }
+        }
 
         private void ConfigurerDataGridView()
         {
@@ -185,15 +202,9 @@ namespace GestionPharmacie
                 // Alertes stock faible
                 string sqlAlertes = @"
                                     SELECT COUNT(*)
-                                            FROM (
-                                                SELECT m.id, ISNULL(SUM(l.quantite_stock),0) AS total_stock, MIN(l.seuil_alerte) AS seuil
-                                                FROM medicament m
-                                                LEFT JOIN lot l 
-                                                    ON m.id = l.medicament_id
-                                                    AND l.date_peremption > GETDATE()
-                                                GROUP BY m.id
-                                                HAVING ISNULL(SUM(l.quantite_stock),0) < ISNULL(MIN(l.seuil_alerte),10)
-                                            ) AS t;";
+                                    FROM lot
+                                    WHERE quantite_stock < seuil_alerte
+                                      AND date_peremption > GETDATE()";
 
                 SqlCommand cmdAlertes = new SqlCommand(sqlAlertes, sqlConnection);
                 int alertes = (int)(cmdAlertes.ExecuteScalar() ?? 0); // <-- safely handle null
@@ -329,12 +340,11 @@ namespace GestionPharmacie
         {
             try
             {
-                string sql = @"SELECT TOP 10 m.categorie, SUM(l.quantite_stock) as total
-                              FROM medicament m
-                              LEFT JOIN lot l ON m.id = l.medicament_id
-                              WHERE m.categorie IS NOT NULL AND m.categorie != ''
-                              GROUP BY m.categorie
-                              ORDER BY total DESC";
+                string sql = @"SELECT TOP 5 m.nom, l.numero_lot, l.date_peremption, l.quantite_stock
+                              FROM lot l
+                              INNER JOIN medicament m ON l.medicament_id = m.id
+                              WHERE l.quantite_stock <= l.seuil_alerte
+                              ORDER BY l.quantite_stock ASC";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, sqlConnection);
                 DataTable dt = new DataTable();
@@ -344,21 +354,20 @@ namespace GestionPharmacie
 
                 if (dt.Rows.Count == 0)
                 {
-                    listBoxCategories.Items.Add("Aucune catégorie trouvée");
+                    listBoxCategories.Items.Add("Aucune alerte de stock trouvée");
                     return;
                 }
 
                 foreach (DataRow row in dt.Rows)
                 {
-                    string categorie = row["categorie"].ToString();
-                    int total = row["total"] != DBNull.Value ? Convert.ToInt32(row["total"]) : 0;
-                    string item = $"{categorie.PadRight(25)} → {total} unités";
-                    listBoxCategories.Items.Add(item);
+
+                    string alerte = $"{row["nom"]} (Lot: {row["numero_lot"]}) - Stock: {row["quantite_stock"]}";
+                    listBoxCategories.Items.Add(alerte);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors du chargement des catégories : " + ex.Message);
+                MessageBox.Show("Erreur lors du chargement de stock : " + ex.Message);
             }
         }
 
@@ -566,15 +575,22 @@ namespace GestionPharmacie
         private void ajouterMedicamentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AjouterMedicament f = new AjouterMedicament();
-            f.Show();
-            this.Hide();
+            var result = f.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.Show();
+            }
         }
 
         private void modifierMedicamentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ModifierMedicament f = new ModifierMedicament();
-            f.Show();
-            this.Hide();
+            var result = f.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.Show();
+            }
+
         }
 
         private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -592,8 +608,16 @@ namespace GestionPharmacie
         private void ajouterUnLotToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AjouterLot f = new AjouterLot();
-            f.Show();
-            this.Hide();
+            var result = f.ShowDialog();
+            if (result == DialogResult.OK) {
+                ChargerStatistiques();
+                ChargerMedicaments();
+                ChargerAlertesPeremption();
+                ChargerGraphiqueCategories();
+                ConfigurerDataGridView();
+
+            }
+
         }
 
         private void commandesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -603,6 +627,6 @@ namespace GestionPharmacie
             this.Hide();
         }
 
-       
+
     }
 }

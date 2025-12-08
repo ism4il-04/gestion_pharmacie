@@ -334,5 +334,28 @@ namespace GestionPharmacie
 
             MessageBox.Show("Données actualisées!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        private void clientsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            AccueilClient a = new AccueilClient();
+            a.Show();
+            this.Hide();
+        }
+
+        private void medicamentsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Accueil a = new Accueil();
+            a.Show();
+            this.Hide();
+        }
+
+        private void ajouterCommandeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AjouterCommande a = new AjouterCommande();
+            var result = a.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.RefreshData();
+            }
+        }
     }
 }

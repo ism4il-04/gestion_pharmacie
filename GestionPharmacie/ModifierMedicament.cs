@@ -73,9 +73,8 @@ namespace GestionPharmacie
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            Accueil f = new Accueil();
-            this.Hide();
-            f.Show();
+          this.DialogResult = DialogResult.Cancel;
+          this.Close();
         }
 
         private void medicamentsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -108,7 +107,13 @@ namespace GestionPharmacie
             txtVente.Text = "";
             btnReinitialiser.Enabled = false;
             btnModifier.Enabled = false;
-            MessageBox.Show("Médicament modifié avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var r = MessageBox.Show("Médicament modifié avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (r == DialogResult.OK)
+            {
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+
         }
     }
 }

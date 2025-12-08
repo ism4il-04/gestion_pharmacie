@@ -50,10 +50,6 @@ namespace GestionPharmacie
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label1 = new Label();
-            menuStrip1 = new MenuStrip();
-            medicamentsToolStripMenuItem = new ToolStripMenuItem();
-            clientsToolStripMenuItem = new ToolStripMenuItem();
-            commandesToolStripMenuItem = new ToolStripMenuItem();
             lblTotalMedicamentsTitle = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -71,57 +67,24 @@ namespace GestionPharmacie
             btnAjouter = new Guna.UI2.WinForms.Guna2Button();
             btnRetour = new Guna.UI2.WinForms.Guna2Button();
             btnReinitialiser = new Guna.UI2.WinForms.Guna2Button();
-            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Stencil", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(575, 58);
+            label1.Location = new Point(437, 43);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(446, 39);
             label1.TabIndex = 0;
             label1.Text = "Ajouter un medicament";
             // 
-            // menuStrip1
-            // 
-            menuStrip1.BackColor = Color.FromArgb(0, 122, 204);
-            menuStrip1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            menuStrip1.ForeColor = Color.White;
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { medicamentsToolStripMenuItem, clientsToolStripMenuItem, commandesToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(8, 2, 0, 2);
-            menuStrip1.Size = new Size(1724, 38);
-            menuStrip1.TabIndex = 1;
-            // 
-            // medicamentsToolStripMenuItem
-            // 
-            medicamentsToolStripMenuItem.Name = "medicamentsToolStripMenuItem";
-            medicamentsToolStripMenuItem.Size = new Size(169, 34);
-            medicamentsToolStripMenuItem.Text = "Medicaments";
-            medicamentsToolStripMenuItem.Click += medicamentsToolStripMenuItem_Click;
-            // 
-            // clientsToolStripMenuItem
-            // 
-            clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            clientsToolStripMenuItem.Size = new Size(99, 34);
-            clientsToolStripMenuItem.Text = "Clients";
-            // 
-            // commandesToolStripMenuItem
-            // 
-            commandesToolStripMenuItem.Name = "commandesToolStripMenuItem";
-            commandesToolStripMenuItem.Size = new Size(157, 34);
-            commandesToolStripMenuItem.Text = "Commandes";
-            // 
             // lblTotalMedicamentsTitle
             // 
             lblTotalMedicamentsTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTotalMedicamentsTitle.ForeColor = Color.Black;
-            lblTotalMedicamentsTitle.Location = new Point(105, 161);
+            lblTotalMedicamentsTitle.Location = new Point(118, 143);
             lblTotalMedicamentsTitle.Margin = new Padding(4, 0, 4, 0);
             lblTotalMedicamentsTitle.Name = "lblTotalMedicamentsTitle";
             lblTotalMedicamentsTitle.Size = new Size(275, 31);
@@ -133,7 +96,7 @@ namespace GestionPharmacie
             // 
             label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(105, 234);
+            label2.Location = new Point(118, 216);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(275, 38);
@@ -145,7 +108,7 @@ namespace GestionPharmacie
             // 
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(105, 308);
+            label3.Location = new Point(118, 290);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(275, 38);
@@ -157,7 +120,7 @@ namespace GestionPharmacie
             // 
             label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(105, 374);
+            label4.Location = new Point(118, 356);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(275, 38);
@@ -169,7 +132,7 @@ namespace GestionPharmacie
             // 
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(105, 441);
+            label5.Location = new Point(118, 423);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(275, 38);
@@ -181,7 +144,7 @@ namespace GestionPharmacie
             // 
             label6.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label6.ForeColor = Color.Black;
-            label6.Location = new Point(105, 518);
+            label6.Location = new Point(118, 500);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(275, 38);
@@ -193,7 +156,7 @@ namespace GestionPharmacie
             // 
             label7.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(105, 596);
+            label7.Location = new Point(118, 578);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(275, 38);
@@ -208,7 +171,7 @@ namespace GestionPharmacie
             txtNom.CustomizableEdges = customizableEdges1;
             txtNom.DefaultText = "";
             txtNom.Font = new Font("Segoe UI", 10F);
-            txtNom.Location = new Point(575, 161);
+            txtNom.Location = new Point(588, 143);
             txtNom.Margin = new Padding(4, 5, 4, 5);
             txtNom.Name = "txtNom";
             txtNom.PlaceholderText = "Nom de médicament";
@@ -224,7 +187,7 @@ namespace GestionPharmacie
             txtRef.CustomizableEdges = customizableEdges3;
             txtRef.DefaultText = "";
             txtRef.Font = new Font("Segoe UI", 10F);
-            txtRef.Location = new Point(575, 234);
+            txtRef.Location = new Point(588, 216);
             txtRef.Margin = new Padding(4, 5, 4, 5);
             txtRef.Name = "txtRef";
             txtRef.PlaceholderText = "Réference (DP1452)";
@@ -240,7 +203,7 @@ namespace GestionPharmacie
             txtDescription.CustomizableEdges = customizableEdges5;
             txtDescription.DefaultText = "";
             txtDescription.Font = new Font("Segoe UI", 10F);
-            txtDescription.Location = new Point(575, 308);
+            txtDescription.Location = new Point(588, 290);
             txtDescription.Margin = new Padding(4, 5, 4, 5);
             txtDescription.Name = "txtDescription";
             txtDescription.PlaceholderText = "Description";
@@ -255,7 +218,7 @@ namespace GestionPharmacie
             txtDosage.CustomizableEdges = customizableEdges7;
             txtDosage.DefaultText = "";
             txtDosage.Font = new Font("Segoe UI", 10F);
-            txtDosage.Location = new Point(575, 374);
+            txtDosage.Location = new Point(588, 356);
             txtDosage.Margin = new Padding(4, 5, 4, 5);
             txtDosage.Name = "txtDosage";
             txtDosage.PlaceholderText = "Dosage (500mg ...)";
@@ -270,7 +233,7 @@ namespace GestionPharmacie
             txtCategorie.CustomizableEdges = customizableEdges9;
             txtCategorie.DefaultText = "";
             txtCategorie.Font = new Font("Segoe UI", 10F);
-            txtCategorie.Location = new Point(575, 441);
+            txtCategorie.Location = new Point(588, 423);
             txtCategorie.Margin = new Padding(4, 5, 4, 5);
             txtCategorie.Name = "txtCategorie";
             txtCategorie.PlaceholderText = "Categorie de medicament";
@@ -285,7 +248,7 @@ namespace GestionPharmacie
             txtAchat.CustomizableEdges = customizableEdges11;
             txtAchat.DefaultText = "";
             txtAchat.Font = new Font("Segoe UI", 10F);
-            txtAchat.Location = new Point(575, 518);
+            txtAchat.Location = new Point(588, 500);
             txtAchat.Margin = new Padding(4, 5, 4, 5);
             txtAchat.Name = "txtAchat";
             txtAchat.PlaceholderText = "prix d'achat en DH";
@@ -300,7 +263,7 @@ namespace GestionPharmacie
             txtVente.CustomizableEdges = customizableEdges13;
             txtVente.DefaultText = "";
             txtVente.Font = new Font("Segoe UI", 10F);
-            txtVente.Location = new Point(575, 596);
+            txtVente.Location = new Point(588, 578);
             txtVente.Margin = new Padding(4, 5, 4, 5);
             txtVente.Name = "txtVente";
             txtVente.PlaceholderText = "prix de vente en DH";
@@ -316,8 +279,8 @@ namespace GestionPharmacie
             btnAjouter.FillColor = Color.SeaGreen;
             btnAjouter.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnAjouter.ForeColor = Color.White;
-            btnAjouter.Location = new Point(686, 705);
-            btnAjouter.Margin = new Padding(4, 4, 4, 4);
+            btnAjouter.Location = new Point(558, 693);
+            btnAjouter.Margin = new Padding(4);
             btnAjouter.Name = "btnAjouter";
             btnAjouter.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnAjouter.Size = new Size(175, 56);
@@ -332,8 +295,8 @@ namespace GestionPharmacie
             btnRetour.FillColor = Color.Goldenrod;
             btnRetour.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnRetour.ForeColor = Color.White;
-            btnRetour.Location = new Point(921, 705);
-            btnRetour.Margin = new Padding(4, 4, 4, 4);
+            btnRetour.Location = new Point(793, 693);
+            btnRetour.Margin = new Padding(4);
             btnRetour.Name = "btnRetour";
             btnRetour.ShadowDecoration.CustomizableEdges = customizableEdges18;
             btnRetour.Size = new Size(201, 56);
@@ -348,8 +311,8 @@ namespace GestionPharmacie
             btnReinitialiser.FillColor = Color.Firebrick;
             btnReinitialiser.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnReinitialiser.ForeColor = Color.White;
-            btnReinitialiser.Location = new Point(415, 705);
-            btnReinitialiser.Margin = new Padding(4, 4, 4, 4);
+            btnReinitialiser.Location = new Point(287, 693);
+            btnReinitialiser.Margin = new Padding(4);
             btnReinitialiser.Name = "btnReinitialiser";
             btnReinitialiser.ShadowDecoration.CustomizableEdges = customizableEdges20;
             btnReinitialiser.Size = new Size(214, 56);
@@ -361,7 +324,7 @@ namespace GestionPharmacie
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1724, 822);
+            ClientSize = new Size(1399, 822);
             Controls.Add(btnReinitialiser);
             Controls.Add(btnRetour);
             Controls.Add(btnAjouter);
@@ -379,29 +342,22 @@ namespace GestionPharmacie
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(lblTotalMedicamentsTitle);
-            Controls.Add(menuStrip1);
             Controls.Add(label1);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "AjouterMedicament";
-            Text = "Form1";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            Text = "Ajouter medicament";
             ResumeLayout(false);
             PerformLayout();
         }
 
         private void txtNom_TextChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+           
         }
 
         #endregion
 
         private Label label1;
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem medicamentsToolStripMenuItem;
-        private ToolStripMenuItem clientsToolStripMenuItem;
-        private ToolStripMenuItem commandesToolStripMenuItem;
         private Label lblTotalMedicamentsTitle;
         private Label label2;
         private Label label3;
