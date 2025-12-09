@@ -14,7 +14,6 @@ namespace GestionPharmacie
     public partial class AjouterCommande : Form
     {
         private DataTable commandeDetailsTable;
-        private int currentUserId = 1; // TODO: Replace with actual logged-in user ID
 
         public AjouterCommande()
         {
@@ -231,7 +230,7 @@ namespace GestionPharmacie
                 Commande commande = new Commande
                 {
                     ClientId = (clientId == -1 ? (int?)null : clientId),
-                    UtilisateurId = currentUserId,
+                    UtilisateurId = UserSession.UserId, // Utilise l'ID de l'utilisateur connecté
                     Total = total
                 };
 

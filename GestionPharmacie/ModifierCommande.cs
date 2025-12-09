@@ -32,6 +32,7 @@ namespace GestionPharmacie
             btnReinitialiser.Click += btnReinitialiser_Click;
             btnRetour.Click += btnRetour_Click;
             btnNom.Click += btnNouveauClient_Click;
+            btnSupprimerMedicament.Click += btnSupprimerMedicament_Click;
         }
 
         private void InitializeGrid()
@@ -343,6 +344,46 @@ namespace GestionPharmacie
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void btnSupprimerMedicament_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Check if a row is selected
+                if (commandeDetailsGrid.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Veuillez sélectionner un médicament à supprimer.",
+                        "Sélection requise", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Get the selected row
+                DataGridViewRow selectedRow = commandeDetailsGrid.SelectedRows[0];
+                string medicamentNom = selectedRow.Cells["Nom"].Value.ToString();
+
+                // Confirm deletion
+                DialogResult result = MessageBox.Show(
+                    $"Êtes-vous sûr de vouloir supprimer '{medicamentNom}' de la commande?",
+                    "Confirmation de suppression",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Remove the row from the DataTable
+                    int rowIndex = selectedRow.Index;
+                    commandeDetailsTable.Rows.RemoveAt(rowIndex);
+
+                    MessageBox.Show("Médicament supprimé de la commande!",
+                        "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la suppression du médicament: " + ex.Message,
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnNouveauClient_Click(object sender, EventArgs e)

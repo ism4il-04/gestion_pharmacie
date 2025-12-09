@@ -250,6 +250,7 @@ namespace GestionPharmacie
             }
         }
 
+
         // List all Medicaments with quantity (optional join with lot)
         public DataTable ListerAvecQuantite()
         {
@@ -257,13 +258,14 @@ namespace GestionPharmacie
             try
             {
                 string sql = @"
-                    SELECT m.id, m.nom AS Nom, m.reference AS Référence, m.categorie AS Catégorie,
-                           m.prix_vente AS PrixVente, ISNULL(SUM(l.quantite_stock),0) AS QuantitéTotale
-                    FROM medicament m
-                    LEFT JOIN lot l ON m.id = l.medicament_id
-                    GROUP BY m.id, m.nom, m.reference, m.categorie, m.prix_vente
-                    ORDER BY m.nom;
-                ";
+            SELECT m.id, m.nom AS Nom, m.reference AS Référence, m.categorie AS Catégorie,
+                   m.prix_vente AS PrixVente, ISNULL(SUM(l.quantite_stock),0) AS QuantitéTotale
+            FROM medicament m
+            LEFT JOIN lot l ON m.id = l.medicament_id
+            WHERE m.est_actif = 1
+            GROUP BY m.id, m.nom, m.reference, m.categorie, m.prix_vente
+            ORDER BY m.nom;
+        ";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, _connection);
                 adapter.Fill(table);

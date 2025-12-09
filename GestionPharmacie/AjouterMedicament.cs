@@ -57,6 +57,9 @@ namespace GestionPharmacie
                     txtCategorie.Clear();
                     txtAchat.Clear();
                     txtVente.Clear();
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+
                 }
                 else
                 {
@@ -74,9 +77,8 @@ namespace GestionPharmacie
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
-            Accueil f = new Accueil();
-            f.Show();
-            this.Hide();
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
         private void btnReinitialiser_Click(object sender, EventArgs e)

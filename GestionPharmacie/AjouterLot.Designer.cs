@@ -50,13 +50,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            menuStrip1 = new MenuStrip();
-            medicamentsToolStripMenuItem = new ToolStripMenuItem();
-            clientsToolStripMenuItem = new ToolStripMenuItem();
-            toolStripMenuItem4 = new ToolStripMenuItem();
-            toolStripMenuItem5 = new ToolStripMenuItem();
-            toolStripMenuItem6 = new ToolStripMenuItem();
-            commandesToolStripMenuItem = new ToolStripMenuItem();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             btnReinitialiser = new Guna.UI2.WinForms.Guna2Button();
             btnRetour = new Guna.UI2.WinForms.Guna2Button();
             btnAjouter = new Guna.UI2.WinForms.Guna2Button();
@@ -76,59 +71,8 @@
             comboFournisseur = new Guna.UI2.WinForms.Guna2ComboBox();
             comboMedicament = new Guna.UI2.WinForms.Guna2ComboBox();
             ajouterF = new Guna.UI2.WinForms.Guna2Button();
-            menuStrip1.SuspendLayout();
+            nouveaum = new Guna.UI2.WinForms.Guna2Button();
             SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.BackColor = Color.FromArgb(0, 122, 204);
-            menuStrip1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            menuStrip1.ForeColor = Color.White;
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { medicamentsToolStripMenuItem, clientsToolStripMenuItem, commandesToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(8, 2, 0, 2);
-            menuStrip1.Size = new Size(1874, 38);
-            menuStrip1.TabIndex = 4;
-            // 
-            // medicamentsToolStripMenuItem
-            // 
-            medicamentsToolStripMenuItem.Name = "medicamentsToolStripMenuItem";
-            medicamentsToolStripMenuItem.Size = new Size(169, 34);
-            medicamentsToolStripMenuItem.Text = "Medicaments";
-            medicamentsToolStripMenuItem.Click += medicamentsToolStripMenuItem_Click;
-            // 
-            // clientsToolStripMenuItem
-            // 
-            clientsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { toolStripMenuItem4, toolStripMenuItem5, toolStripMenuItem6 });
-            clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            clientsToolStripMenuItem.Size = new Size(99, 34);
-            clientsToolStripMenuItem.Text = "Clients";
-            // 
-            // toolStripMenuItem4
-            // 
-            toolStripMenuItem4.Name = "toolStripMenuItem4";
-            toolStripMenuItem4.Size = new Size(271, 38);
-            toolStripMenuItem4.Text = "Ajouter Client";
-            // 
-            // toolStripMenuItem5
-            // 
-            toolStripMenuItem5.Name = "toolStripMenuItem5";
-            toolStripMenuItem5.Size = new Size(271, 38);
-            toolStripMenuItem5.Text = "Modifier Client";
-            // 
-            // toolStripMenuItem6
-            // 
-            toolStripMenuItem6.Name = "toolStripMenuItem6";
-            toolStripMenuItem6.Size = new Size(271, 38);
-            toolStripMenuItem6.Text = "Archiver Client";
-            // 
-            // commandesToolStripMenuItem
-            // 
-            commandesToolStripMenuItem.Name = "commandesToolStripMenuItem";
-            commandesToolStripMenuItem.Size = new Size(157, 34);
-            commandesToolStripMenuItem.Text = "Commandes";
             // 
             // btnReinitialiser
             // 
@@ -137,7 +81,7 @@
             btnReinitialiser.FillColor = Color.Firebrick;
             btnReinitialiser.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnReinitialiser.ForeColor = Color.White;
-            btnReinitialiser.Location = new Point(439, 675);
+            btnReinitialiser.Location = new Point(430, 642);
             btnReinitialiser.Margin = new Padding(4);
             btnReinitialiser.Name = "btnReinitialiser";
             btnReinitialiser.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -153,13 +97,13 @@
             btnRetour.FillColor = Color.Goldenrod;
             btnRetour.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnRetour.ForeColor = Color.White;
-            btnRetour.Location = new Point(945, 675);
+            btnRetour.Location = new Point(936, 642);
             btnRetour.Margin = new Padding(4);
             btnRetour.Name = "btnRetour";
             btnRetour.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnRetour.Size = new Size(201, 56);
             btnRetour.TabIndex = 47;
-            btnRetour.Text = "↩  Retour";
+            btnRetour.Text = "↩  Cancel";
             btnRetour.Click += btnRetour_Click;
             // 
             // btnAjouter
@@ -169,7 +113,7 @@
             btnAjouter.FillColor = Color.SeaGreen;
             btnAjouter.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnAjouter.ForeColor = Color.White;
-            btnAjouter.Location = new Point(710, 675);
+            btnAjouter.Location = new Point(701, 642);
             btnAjouter.Margin = new Padding(4);
             btnAjouter.Name = "btnAjouter";
             btnAjouter.ShadowDecoration.CustomizableEdges = customizableEdges6;
@@ -184,7 +128,7 @@
             txtQuantite.CustomizableEdges = customizableEdges7;
             txtQuantite.DefaultText = "";
             txtQuantite.Font = new Font("Segoe UI", 10F);
-            txtQuantite.Location = new Point(730, 435);
+            txtQuantite.Location = new Point(592, 422);
             txtQuantite.Margin = new Padding(4, 5, 4, 5);
             txtQuantite.Name = "txtQuantite";
             txtQuantite.PlaceholderText = "Quantité de medicament";
@@ -197,7 +141,7 @@
             // 
             label4.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(404, 489);
+            label4.Location = new Point(266, 476);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(275, 38);
@@ -209,7 +153,7 @@
             // 
             label3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(404, 320);
+            label3.Location = new Point(266, 307);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(275, 38);
@@ -221,7 +165,7 @@
             // 
             label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(391, 262);
+            label2.Location = new Point(253, 249);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(275, 38);
@@ -233,7 +177,7 @@
             // 
             lblTotalMedicamentsTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTotalMedicamentsTitle.ForeColor = Color.Black;
-            lblTotalMedicamentsTitle.Location = new Point(391, 215);
+            lblTotalMedicamentsTitle.Location = new Point(253, 202);
             lblTotalMedicamentsTitle.Margin = new Padding(4, 0, 4, 0);
             lblTotalMedicamentsTitle.Name = "lblTotalMedicamentsTitle";
             lblTotalMedicamentsTitle.Size = new Size(275, 31);
@@ -245,7 +189,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Stencil", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(631, 84);
+            label1.Location = new Point(701, 118);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(293, 39);
@@ -256,7 +200,7 @@
             // 
             label5.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(404, 378);
+            label5.Location = new Point(266, 365);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(275, 38);
@@ -268,7 +212,7 @@
             // 
             label6.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label6.ForeColor = Color.Black;
-            label6.Location = new Point(404, 435);
+            label6.Location = new Point(266, 422);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(275, 38);
@@ -280,7 +224,7 @@
             // 
             label7.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(404, 546);
+            label7.Location = new Point(266, 533);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(275, 38);
@@ -294,7 +238,7 @@
             txtLot.CustomizableEdges = customizableEdges9;
             txtLot.DefaultText = "";
             txtLot.Font = new Font("Segoe UI", 10F);
-            txtLot.Location = new Point(730, 209);
+            txtLot.Location = new Point(592, 196);
             txtLot.Margin = new Padding(4, 5, 4, 5);
             txtLot.Name = "txtLot";
             txtLot.PlaceholderText = "Numéro de lot";
@@ -309,7 +253,7 @@
             txtSeuil.CustomizableEdges = customizableEdges11;
             txtSeuil.DefaultText = "";
             txtSeuil.Font = new Font("Segoe UI", 10F);
-            txtSeuil.Location = new Point(730, 489);
+            txtSeuil.Location = new Point(592, 476);
             txtSeuil.Margin = new Padding(4, 5, 4, 5);
             txtSeuil.Name = "txtSeuil";
             txtSeuil.PlaceholderText = "Seuil d'alerte";
@@ -324,7 +268,7 @@
             dateFabrication.CustomizableEdges = customizableEdges13;
             dateFabrication.Font = new Font("Segoe UI", 9F);
             dateFabrication.Format = DateTimePickerFormat.Long;
-            dateFabrication.Location = new Point(730, 320);
+            dateFabrication.Location = new Point(592, 307);
             dateFabrication.Margin = new Padding(4);
             dateFabrication.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dateFabrication.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -340,7 +284,7 @@
             datePeremption.CustomizableEdges = customizableEdges15;
             datePeremption.Font = new Font("Segoe UI", 9F);
             datePeremption.Format = DateTimePickerFormat.Long;
-            datePeremption.Location = new Point(730, 378);
+            datePeremption.Location = new Point(592, 365);
             datePeremption.Margin = new Padding(4);
             datePeremption.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             datePeremption.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -361,7 +305,7 @@
             comboFournisseur.Font = new Font("Segoe UI", 10F);
             comboFournisseur.ForeColor = Color.FromArgb(68, 88, 112);
             comboFournisseur.ItemHeight = 30;
-            comboFournisseur.Location = new Point(730, 539);
+            comboFournisseur.Location = new Point(592, 526);
             comboFournisseur.Margin = new Padding(4);
             comboFournisseur.Name = "comboFournisseur";
             comboFournisseur.ShadowDecoration.CustomizableEdges = customizableEdges18;
@@ -379,7 +323,7 @@
             comboMedicament.Font = new Font("Segoe UI", 10F);
             comboMedicament.ForeColor = Color.FromArgb(68, 88, 112);
             comboMedicament.ItemHeight = 30;
-            comboMedicament.Location = new Point(730, 255);
+            comboMedicament.Location = new Point(592, 242);
             comboMedicament.Margin = new Padding(4);
             comboMedicament.Name = "comboMedicament";
             comboMedicament.ShadowDecoration.CustomizableEdges = customizableEdges20;
@@ -393,7 +337,7 @@
             ajouterF.FillColor = Color.SeaGreen;
             ajouterF.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             ajouterF.ForeColor = Color.White;
-            ajouterF.Location = new Point(1377, 539);
+            ajouterF.Location = new Point(1168, 526);
             ajouterF.Margin = new Padding(4);
             ajouterF.Name = "ajouterF";
             ajouterF.ShadowDecoration.CustomizableEdges = customizableEdges22;
@@ -402,11 +346,28 @@
             ajouterF.Text = "➕ Nouveau fournisseur";
             ajouterF.Click += ajouterF_Click;
             // 
+            // nouveaum
+            // 
+            nouveaum.BorderRadius = 8;
+            nouveaum.CustomizableEdges = customizableEdges23;
+            nouveaum.FillColor = Color.SeaGreen;
+            nouveaum.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            nouveaum.ForeColor = Color.White;
+            nouveaum.Location = new Point(1168, 242);
+            nouveaum.Margin = new Padding(4);
+            nouveaum.Name = "nouveaum";
+            nouveaum.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            nouveaum.Size = new Size(325, 36);
+            nouveaum.TabIndex = 59;
+            nouveaum.Text = "➕ Nouveau medicamment";
+            nouveaum.Click += nouveaum_Click;
+            // 
             // AjouterLot
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1874, 1036);
+            ClientSize = new Size(1766, 1036);
+            Controls.Add(nouveaum);
             Controls.Add(ajouterF);
             Controls.Add(comboMedicament);
             Controls.Add(comboFournisseur);
@@ -426,26 +387,15 @@
             Controls.Add(label2);
             Controls.Add(lblTotalMedicamentsTitle);
             Controls.Add(label1);
-            Controls.Add(menuStrip1);
             Margin = new Padding(4);
             Name = "AjouterLot";
             Text = "AjouterLot";
             Load += AjouterLot_Load;
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem medicamentsToolStripMenuItem;
-        private ToolStripMenuItem clientsToolStripMenuItem;
-        private ToolStripMenuItem toolStripMenuItem4;
-        private ToolStripMenuItem toolStripMenuItem5;
-        private ToolStripMenuItem toolStripMenuItem6;
-        private ToolStripMenuItem commandesToolStripMenuItem;
         private Guna.UI2.WinForms.Guna2Button btnReinitialiser;
         private Guna.UI2.WinForms.Guna2Button btnRetour;
         private Guna.UI2.WinForms.Guna2Button btnAjouter;
@@ -466,5 +416,6 @@
         private Guna.UI2.WinForms.Guna2ComboBox comboMedicament;
         private Guna.UI2.WinForms.Guna2Button addFou;
         private Guna.UI2.WinForms.Guna2Button ajouterF;
+        private Guna.UI2.WinForms.Guna2Button nouveaum;
     }
 }

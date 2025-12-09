@@ -198,6 +198,7 @@ namespace GestionPharmacie
             }
         }
 
+
         // Lister tous les clients
         public DataTable Lister()
         {
@@ -205,9 +206,10 @@ namespace GestionPharmacie
             try
             {
                 string sql = @"SELECT id, nom_complet AS Nom, telephone AS Téléphone,
-                                      adresse AS Adresse, email AS Email
-                               FROM client
-                               ORDER BY nom_complet;";
+                              adresse AS Adresse, email AS Email
+                       FROM client
+                       WHERE est_actif = 1
+                       ORDER BY nom_complet;";
 
                 SqlDataAdapter adapter = new SqlDataAdapter(sql, _connection);
                 adapter.Fill(table);

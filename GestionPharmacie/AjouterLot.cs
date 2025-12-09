@@ -30,7 +30,7 @@ namespace GestionPharmacie
             using (SqlConnection cn = Connexion.connecter())
             {
                 cn.Open();
-                SqlDataAdapter da = new SqlDataAdapter("SELECT id, nom FROM medicament", cn);
+                SqlDataAdapter da = new SqlDataAdapter("SELECT id, nom FROM medicament WHERE est_actif = 1", cn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
@@ -84,7 +84,12 @@ namespace GestionPharmacie
 
             if (lot.Ajouter())
             {
-                MessageBox.Show("Lot ajouté avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               var x = MessageBox.Show("Lot ajouté avec succès !", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               if (x == DialogResult.OK)
+               {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
             }
             else
             {
@@ -94,9 +99,8 @@ namespace GestionPharmacie
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            Accueil f = new Accueil();
-            this.Hide();
-            f.Show();
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
         private void medicamentsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -110,13 +114,23 @@ namespace GestionPharmacie
         {
             AjouterFournisseur popup = new AjouterFournisseur();
 
-            // Open as modal dialog → stops everything until the popup is closed
+            
             var result = popup.ShowDialog();
 
-            // If fournisseur successfully added → reload combo box
+            
             if (result == DialogResult.OK)
             {
                 LoadComboBoxes();
+            }
+        }
+
+        private void nouveaum_Click(object sender, EventArgs e)
+        {
+            AjouterMedicament m = new AjouterMedicament();
+            var result = m.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.LoadComboBoxes();
             }
         }
     }

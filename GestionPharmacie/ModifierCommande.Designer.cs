@@ -44,6 +44,8 @@ namespace GestionPharmacie
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
@@ -58,6 +60,7 @@ namespace GestionPharmacie
             comboClient = new Guna.UI2.WinForms.Guna2ComboBox();
             btnNom = new Guna.UI2.WinForms.Guna2Button();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            btnSupprimerMedicament = new Guna.UI2.WinForms.Guna2Button();
             commandeDetailsGrid = new Guna.UI2.WinForms.Guna2DataGridView();
             ((System.ComponentModel.ISupportInitialize)commandeDetailsGrid).BeginInit();
             SuspendLayout();
@@ -66,10 +69,9 @@ namespace GestionPharmacie
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Stencil", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(615, 77);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(492, 62);
             label1.Name = "label1";
-            label1.Size = new Size(450, 39);
+            label1.Size = new Size(384, 33);
             label1.TabIndex = 4;
             label1.Text = "Modifier une commande";
             // 
@@ -80,11 +82,10 @@ namespace GestionPharmacie
             btnReinitialiser.FillColor = Color.Firebrick;
             btnReinitialiser.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnReinitialiser.ForeColor = Color.White;
-            btnReinitialiser.Location = new Point(504, 710);
-            btnReinitialiser.Margin = new Padding(4);
+            btnReinitialiser.Location = new Point(403, 568);
             btnReinitialiser.Name = "btnReinitialiser";
             btnReinitialiser.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnReinitialiser.Size = new Size(214, 56);
+            btnReinitialiser.Size = new Size(171, 45);
             btnReinitialiser.TabIndex = 47;
             btnReinitialiser.Text = "🗑️ Réinitialiser";
             // 
@@ -95,11 +96,10 @@ namespace GestionPharmacie
             btnRetour.FillColor = Color.Goldenrod;
             btnRetour.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnRetour.ForeColor = Color.White;
-            btnRetour.Location = new Point(1011, 710);
-            btnRetour.Margin = new Padding(4);
+            btnRetour.Location = new Point(809, 568);
             btnRetour.Name = "btnRetour";
             btnRetour.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnRetour.Size = new Size(201, 56);
+            btnRetour.Size = new Size(161, 45);
             btnRetour.TabIndex = 46;
             btnRetour.Text = "↩ Annuler";
             // 
@@ -110,11 +110,10 @@ namespace GestionPharmacie
             btnAjouter.FillColor = Color.SeaGreen;
             btnAjouter.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnAjouter.ForeColor = Color.White;
-            btnAjouter.Location = new Point(776, 710);
-            btnAjouter.Margin = new Padding(4);
+            btnAjouter.Location = new Point(621, 568);
             btnAjouter.Name = "btnAjouter";
             btnAjouter.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnAjouter.Size = new Size(175, 56);
+            btnAjouter.Size = new Size(163, 45);
             btnAjouter.TabIndex = 45;
             btnAjouter.Text = "💾 Enregistrer";
             // 
@@ -122,10 +121,9 @@ namespace GestionPharmacie
             // 
             label2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(246, 289);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(197, 231);
             label2.Name = "label2";
-            label2.Size = new Size(275, 38);
+            label2.Size = new Size(220, 30);
             label2.TabIndex = 38;
             label2.Text = "Médicaments / Quantité";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -134,10 +132,9 @@ namespace GestionPharmacie
             // 
             lblTotalMedicamentsTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTotalMedicamentsTitle.ForeColor = Color.Black;
-            lblTotalMedicamentsTitle.Location = new Point(159, 219);
-            lblTotalMedicamentsTitle.Margin = new Padding(4, 0, 4, 0);
+            lblTotalMedicamentsTitle.Location = new Point(127, 175);
             lblTotalMedicamentsTitle.Name = "lblTotalMedicamentsTitle";
-            lblTotalMedicamentsTitle.Size = new Size(275, 31);
+            lblTotalMedicamentsTitle.Size = new Size(220, 25);
             lblTotalMedicamentsTitle.TabIndex = 37;
             lblTotalMedicamentsTitle.Text = "Client";
             lblTotalMedicamentsTitle.TextAlign = ContentAlignment.MiddleCenter;
@@ -148,13 +145,13 @@ namespace GestionPharmacie
             txtQte.CustomizableEdges = customizableEdges7;
             txtQte.DefaultText = "";
             txtQte.Font = new Font("Segoe UI", 10F);
-            txtQte.Location = new Point(988, 293);
-            txtQte.Margin = new Padding(4, 5, 4, 5);
+            txtQte.Location = new Point(790, 234);
+            txtQte.Margin = new Padding(3, 4, 3, 4);
             txtQte.Name = "txtQte";
             txtQte.PlaceholderText = "Quantite";
             txtQte.SelectedText = "";
             txtQte.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            txtQte.Size = new Size(128, 45);
+            txtQte.Size = new Size(102, 36);
             txtQte.TabIndex = 48;
             // 
             // comboMedicament
@@ -168,11 +165,10 @@ namespace GestionPharmacie
             comboMedicament.Font = new Font("Segoe UI", 10F);
             comboMedicament.ForeColor = Color.FromArgb(68, 88, 112);
             comboMedicament.ItemHeight = 30;
-            comboMedicament.Location = new Point(615, 293);
-            comboMedicament.Margin = new Padding(4);
+            comboMedicament.Location = new Point(492, 234);
             comboMedicament.Name = "comboMedicament";
             comboMedicament.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            comboMedicament.Size = new Size(364, 36);
+            comboMedicament.Size = new Size(292, 36);
             comboMedicament.TabIndex = 49;
             // 
             // comboClient
@@ -186,11 +182,10 @@ namespace GestionPharmacie
             comboClient.Font = new Font("Segoe UI", 10F);
             comboClient.ForeColor = Color.FromArgb(68, 88, 112);
             comboClient.ItemHeight = 30;
-            comboClient.Location = new Point(615, 214);
-            comboClient.Margin = new Padding(4);
+            comboClient.Location = new Point(492, 171);
             comboClient.Name = "comboClient";
             comboClient.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            comboClient.Size = new Size(499, 36);
+            comboClient.Size = new Size(400, 36);
             comboClient.TabIndex = 50;
             // 
             // btnNom
@@ -200,11 +195,10 @@ namespace GestionPharmacie
             btnNom.FillColor = Color.DeepSkyBlue;
             btnNom.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnNom.ForeColor = Color.Black;
-            btnNom.Location = new Point(1173, 212);
-            btnNom.Margin = new Padding(4);
+            btnNom.Location = new Point(938, 170);
             btnNom.Name = "btnNom";
             btnNom.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            btnNom.Size = new Size(276, 38);
+            btnNom.Size = new Size(221, 30);
             btnNom.TabIndex = 51;
             btnNom.Text = "➕ Nouveau client";
             // 
@@ -215,13 +209,26 @@ namespace GestionPharmacie
             guna2Button1.FillColor = Color.DeepSkyBlue;
             guna2Button1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             guna2Button1.ForeColor = Color.Black;
-            guna2Button1.Location = new Point(1173, 300);
-            guna2Button1.Margin = new Padding(4);
+            guna2Button1.Location = new Point(938, 240);
             guna2Button1.Name = "guna2Button1";
             guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            guna2Button1.Size = new Size(309, 38);
+            guna2Button1.Size = new Size(247, 30);
             guna2Button1.TabIndex = 52;
             guna2Button1.Text = "➕ Ajouter à commande";
+            // 
+            // btnSupprimerMedicament
+            // 
+            btnSupprimerMedicament.BorderRadius = 8;
+            btnSupprimerMedicament.CustomizableEdges = customizableEdges17;
+            btnSupprimerMedicament.FillColor = Color.Crimson;
+            btnSupprimerMedicament.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnSupprimerMedicament.ForeColor = Color.White;
+            btnSupprimerMedicament.Location = new Point(938, 288);
+            btnSupprimerMedicament.Name = "btnSupprimerMedicament";
+            btnSupprimerMedicament.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            btnSupprimerMedicament.Size = new Size(247, 30);
+            btnSupprimerMedicament.TabIndex = 54;
+            btnSupprimerMedicament.Text = "🗑️ Supprimer sélection";
             // 
             // commandeDetailsGrid
             // 
@@ -246,13 +253,11 @@ namespace GestionPharmacie
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             commandeDetailsGrid.DefaultCellStyle = dataGridViewCellStyle3;
             commandeDetailsGrid.GridColor = Color.FromArgb(231, 229, 255);
-            commandeDetailsGrid.Location = new Point(343, 404);
-            commandeDetailsGrid.Margin = new Padding(4);
+            commandeDetailsGrid.Location = new Point(274, 323);
             commandeDetailsGrid.Name = "commandeDetailsGrid";
             commandeDetailsGrid.RowHeadersVisible = false;
             commandeDetailsGrid.RowHeadersWidth = 51;
-            commandeDetailsGrid.RowTemplate.Height = 29;
-            commandeDetailsGrid.Size = new Size(1034, 254);
+            commandeDetailsGrid.Size = new Size(827, 203);
             commandeDetailsGrid.TabIndex = 53;
             commandeDetailsGrid.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             commandeDetailsGrid.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -278,9 +283,10 @@ namespace GestionPharmacie
             // 
             // ModifierCommande
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1687, 1036);
+            ClientSize = new Size(1350, 829);
+            Controls.Add(btnSupprimerMedicament);
             Controls.Add(commandeDetailsGrid);
             Controls.Add(guna2Button1);
             Controls.Add(btnNom);
@@ -293,6 +299,7 @@ namespace GestionPharmacie
             Controls.Add(label2);
             Controls.Add(lblTotalMedicamentsTitle);
             Controls.Add(label1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "ModifierCommande";
             Text = "Modifier Commande";
             ((System.ComponentModel.ISupportInitialize)commandeDetailsGrid).EndInit();
@@ -312,6 +319,7 @@ namespace GestionPharmacie
         private Guna.UI2.WinForms.Guna2ComboBox comboClient;
         private Guna.UI2.WinForms.Guna2Button btnNom;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button btnSupprimerMedicament;
         private Guna.UI2.WinForms.Guna2DataGridView commandeDetailsGrid;
     }
 }

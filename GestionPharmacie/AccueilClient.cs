@@ -138,7 +138,7 @@ namespace GestionPharmacie
         }
         private void ajouterClientToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
+
             AjouterClient ajouterClientForm = new AjouterClient();
 
             // Open as modal dialog → stops everything until the popup is closed
@@ -214,6 +214,14 @@ namespace GestionPharmacie
             RefreshData();
 
             MessageBox.Show("Données actualisées!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void archiverClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ArchiverClient archiverClientForm = new ArchiverClient();
+            archiverClientForm.ShowDialog();
+            this.RefreshData();
+
         }
     }
 }

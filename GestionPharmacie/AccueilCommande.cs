@@ -69,7 +69,6 @@ namespace GestionPharmacie
                             ISNULL(cl.nom_complet, 'Client anonyme') AS 'Client',
                             u.nom + ' ' + u.prenom AS 'Utilisateur',
                             c.date_commande AS 'Date',
-                            c.statut AS 'Statut',
                             c.total AS 'Total (DH)',
                             COUNT(cd.id) AS 'Nb Articles'
                         FROM commande c
@@ -101,11 +100,11 @@ namespace GestionPharmacie
                 if (guna2DataGridView1.Columns["Total (DH)"] != null)
                 {
                     guna2DataGridView1.Columns["Total (DH)"].DefaultCellStyle.Format = "N2";
-                    guna2DataGridView1.Columns["Total (DH)"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    guna2DataGridView1.Columns["Total (DH)"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 }
 
                 // Style status column with colors
-                StyleStatusColumn();
+                //StyleStatusColumn();
 
                 connection.Close();
             }
@@ -116,32 +115,32 @@ namespace GestionPharmacie
             }
         }
 
-        private void StyleStatusColumn()
-        {
-            // Add color coding for status
-            foreach (DataGridViewRow row in guna2DataGridView1.Rows)
-            {
-                if (row.Cells["Statut"].Value != null)
-                {
-                    string statut = row.Cells["Statut"].Value.ToString();
-                    switch (statut.ToLower())
-                    {
-                        case "en_cours":
-                            row.Cells["Statut"].Style.BackColor = Color.FromArgb(255, 243, 205);
-                            row.Cells["Statut"].Style.ForeColor = Color.FromArgb(180, 83, 9);
-                            break;
-                        case "livree":
-                            row.Cells["Statut"].Style.BackColor = Color.FromArgb(209, 250, 229);
-                            row.Cells["Statut"].Style.ForeColor = Color.FromArgb(6, 95, 70);
-                            break;
-                        case "annulee":
-                            row.Cells["Statut"].Style.BackColor = Color.FromArgb(254, 226, 226);
-                            row.Cells["Statut"].Style.ForeColor = Color.FromArgb(153, 27, 27);
-                            break;
-                    }
-                }
-            }
-        }
+        //private void StyleStatusColumn()
+        //{
+        //    // Add color coding for status
+        //    //foreach (DataGridViewRow row in guna2DataGridView1.Rows)
+        //    //{
+        //    //    if (row.Cells["Statut"].Value != null)
+        //    //    {
+        //    //        string statut = row.Cells["Statut"].Value.ToString();
+        //    //        switch (statut.ToLower())
+        //    //        {
+        //    //            case "en_cours":
+        //    //                row.Cells["Statut"].Style.BackColor = Color.FromArgb(255, 243, 205);
+        //    //                row.Cells["Statut"].Style.ForeColor = Color.FromArgb(180, 83, 9);
+        //    //                break;
+        //    //            case "livree":
+        //    //                row.Cells["Statut"].Style.BackColor = Color.FromArgb(209, 250, 229);
+        //    //                row.Cells["Statut"].Style.ForeColor = Color.FromArgb(6, 95, 70);
+        //    //                break;
+        //    //            case "annulee":
+        //    //                row.Cells["Statut"].Style.BackColor = Color.FromArgb(254, 226, 226);
+        //    //                row.Cells["Statut"].Style.ForeColor = Color.FromArgb(153, 27, 27);
+        //    //                break;
+        //    //        }
+        //    //    }
+        //    //}
+        //}
 
         private void LoadStatistics()
         {
@@ -286,20 +285,10 @@ namespace GestionPharmacie
                 }
             };
 
-            ToolStripMenuItem viewDetails = new ToolStripMenuItem("👁️ Voir les détails");
-            viewDetails.Click += (s, e) =>
-            {
-                if (guna2DataGridView1.SelectedRows.Count > 0)
-                {
-                    int commandeId = Convert.ToInt32(guna2DataGridView1.SelectedRows[0].Cells["ID"].Value);
-                    MessageBox.Show($"Détails de la commande #{commandeId}\\n(Fonctionnalité à implémenter)");
-                }
-            };
+       
 
             contextMenu.Items.Add(modifierCommande);
             contextMenu.Items.Add(genererFacture);
-            contextMenu.Items.Add(viewDetails);
-
             guna2DataGridView1.ContextMenuStrip = contextMenu;
         }
 
@@ -349,7 +338,7 @@ namespace GestionPharmacie
                 dv.RowFilter = filterExpression;
 
                 // Update status column styling after filter
-                StyleStatusColumn();
+                //StyleStatusColumn();
             }
             catch (Exception ex)
             {
@@ -368,6 +357,29 @@ namespace GestionPharmacie
             RefreshData();
 
             MessageBox.Show("Données actualisées!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void clientsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            AccueilClient a = new AccueilClient();
+            a.Show();
+            this.Hide();
+        }
+
+        private void medicamentsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Accueil a = new Accueil();
+            a.Show();
+            this.Hide();
+        }
+
+        private void ajouterCommandeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AjouterCommande a = new AjouterCommande();
+            var result = a.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                this.RefreshData();
+            }
         }
     }
 }

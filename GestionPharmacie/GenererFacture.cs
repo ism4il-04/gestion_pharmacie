@@ -33,7 +33,7 @@ namespace GestionPharmacie
                 // Get order information
                 string sqlOrder = @"SELECT c.id, c.date_commande, c.total, cl.nom_complet, cl.telephone, cl.email
                                    FROM commande c
-                                   INNER JOIN client cl ON c.client_id = cl.id
+                                   LEFT JOIN client cl ON c.client_id = cl.id
                                    WHERE c.id = @CommandeId";
 
                 SqlCommand cmdOrder = new SqlCommand(sqlOrder, connection);
@@ -47,8 +47,8 @@ namespace GestionPharmacie
                         lblCommandeId.Text = $"Commande #{reader.GetInt32(0)}";
                         orderDate = reader.GetDateTime(1);
                         lblDateCommande.Text = orderDate.ToString("dd/MM/yyyy HH:mm");
-                        orderTotal = reader.GetDecimal(2);
-                        clientName = reader.GetString(3);
+                        orderTotal = reader.IsDBNull(2) ? 0 : reader.GetDecimal(2);
+                        clientName = reader.IsDBNull(3) ? "Client anonyme" : reader.GetString(3);
                         lblClient.Text = clientName;
                         lblTelephone.Text = reader.IsDBNull(4) ? "N/A" : reader.GetString(4);
                         lblEmail.Text = reader.IsDBNull(5) ? "N/A" : reader.GetString(5);
